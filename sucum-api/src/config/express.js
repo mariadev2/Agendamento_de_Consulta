@@ -5,9 +5,8 @@ import createTable from '../config/create_tables_if_not_exists.js'
 
 export default  () => {
   const app = express();
-  
 
-  // SETANDO VARIÁVEIS DA APLICAÇÃO
+  // SET VARIABLES
   app.set('port', process.env.PORT || get.server.port);
 
   // MIDDLEWARES
