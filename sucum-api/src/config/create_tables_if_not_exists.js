@@ -2,7 +2,8 @@ import db from '../database/config-database.js'
 import {queryCreatePacienteTable, 
         queryCreateSupervisorTable, 
         queryCreateMedicoTable, 
-        queryCreateConsultaTable} from '../database/utils.js'
+        queryCreateConsultaTable,
+        queryCreateQuestionarioTable} from '../database/utils.js'
 
 export default () => {
     const getInstanceDB = db();
@@ -10,6 +11,7 @@ export default () => {
     const querySupervisor = queryCreateSupervisorTable();
     const queryMedico = queryCreateMedicoTable();
     const queryConsulta = queryCreateConsultaTable();
+    const queryQuestionario =  queryCreateQuestionarioTable();
 
     // SQL query to create table if it doesn't exist
     getInstanceDB.connect((err) => {
@@ -35,6 +37,11 @@ export default () => {
     getInstanceDB.query(queryConsulta, (err, result) => {
         if (err) throw err;
         console.log('Table consulta created or already exists');
+    });
+
+    getInstanceDB.query(queryQuestionario, (err, result) => {
+        if (err) throw err;
+        console.log('Table questionario created or already exists');
     });
 
     // Close the connection

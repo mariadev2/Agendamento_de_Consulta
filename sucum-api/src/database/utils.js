@@ -11,7 +11,7 @@ export default function createSqlInsertPaciente(tabela, dados) {
 }
 
 export function queryCreatePacienteTable(){
-    return  ` CREATE TABLE IF NOT EXISTS paciente (
+    return  `CREATE TABLE IF NOT EXISTS paciente (
         id INT AUTO_INCREMENT PRIMARY KEY,
         createTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         username VARCHAR(255) NOT NULL,
@@ -66,6 +66,20 @@ export function queryCreateConsultaTable() {
         tipoConsulta VARCHAR(255),
         descricaoConsulta VARCHAR(255),
         estadoConsulta VARCHAR(255),
-        descricaoMotivo VARCHAR(255)
+        descricaoMotivo VARCHAR(255),
+        idPaciente int,
+        idMedico int,
+        FOREIGN KEY (idPaciente) REFERENCES paciente(id),
+        FOREIGN KEY (idMedico) REFERENCES medico(id)
+    )`
+}
+
+export function queryCreateQuestionarioTable(){
+    return `CREATE TABLE IF NOT EXISTS questionario(  
+        id int NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'Primary Key',
+        create_time DATETIME COMMENT 'Create Time',
+        problemaSaude VARCHAR(255),
+        usoMedicamento VARCHAR(255),
+        alergia VARCHAR(255)
     )`
 }
