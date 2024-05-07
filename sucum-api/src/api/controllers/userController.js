@@ -2,23 +2,13 @@
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import User from '../models/user.js'
+import criarSQLInsercao from '../../database/utils.js'
+import db from '../../database/config-database.js'
+
 
 export default () => {
     const controller = {};
-    controller.signUpController = async (req, res) => {
-        
-        try {
-            const { username, password } = req.body;
-            const hashedToken = await bcrypt.hash(password, 10);
-            const user = new User({ username, password:hashedToken });
-            // save database
-            // await user.save();
-            res.status(201).json({ message: 'User registered successfully' });
-        } catch (error) {
-            res.status(500).json({ error: 'Registration failed' });
-        }
-    };
-
+    
     controller.loginController = async (req, res) => {
         try {
             const { username, password } = req.body;
