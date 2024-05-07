@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-const pacienteSchema = new Schema({
+const medicoSchema = new Schema({
     username: { type: String, required: true },
     password: { type: String, required: true },
     token: { type: String, required: true },
@@ -12,7 +12,9 @@ const pacienteSchema = new Schema({
     email: { type: String, required: true },
     cpf: { type: String, required: true },
     cep: { type: String, required: true },
-    createTime : {type: String, required: true}
+    createTime : {type: String, required: true},
+    crm:  { type: String, required: true },
+    especializacao :  { type: String, required: true },
  });
 
-export default model('Paciente', pacienteSchema);
+export default model('Medico', medicoSchema);
