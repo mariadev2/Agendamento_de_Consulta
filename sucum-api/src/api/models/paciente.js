@@ -2,9 +2,9 @@ import { Schema, model } from 'mongoose';
 
 const pacienteSchema = new Schema({
     username: { type: String, required: true },
-    password: { type: String, required: true },
+    senha: { type: String, required: true },
     token: { type: String, required: true },
-    dataNascimento: { type: Date, required: true },
+    dataNascimento: { type: String, required: true },
     celular: { type: String, required: true },
     numeroCasa: { type: Number, required: true },
     bairro: { type: String, required: true },

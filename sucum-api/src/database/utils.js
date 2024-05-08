@@ -1,9 +1,8 @@
-
-export default function createSqlInsertPaciente(tabela, dados) {
-    return sql = `INSERT INTO ${tabela} (createTime, username, password, 
+export function createSqlInsertPaciente(dados) {
+    return `INSERT INTO paciente (createTime, username, senha, 
                                         token, dataNascimento, celular, 
                                         cep, numeroCasa, bairro, cidade, email, cpf) 
-                        VALUES ("${dados.createTime}","${dados.username}","${dados.password}",
+                        VALUES ("${dados.createTime}","${dados.username}","${dados.senha}",
                                 "${dados.token}","${dados.dataNascimento}","${dados.celular}",
                                 "${dados.cep}","${dados.numeroCasa}","${dados.bairro}",
                                 "${dados.cidade}","${dados.email}","${dados.cpf}");`;
@@ -82,4 +81,33 @@ export function queryCreateQuestionarioTable(){
         usoMedicamento VARCHAR(255),
         alergia VARCHAR(255)
     )`
+}
+
+export function checkUserExistPaciente(username){
+    return `SELECT COUNT(*) AS count
+                FROM paciente 
+                WHERE username = "${username}"`
+}
+
+export function checkUserExistMedico(username){
+    return `SELECT COUNT(*)
+    FROM medico
+    WHERE ${username}
+    )`
+}
+
+export function checkUserExistSupervisor(username){
+    return `SELECT COUNT(*)
+    FROM supervisor
+    WHERE ${username}
+    )`
+}
+
+export function checkUserExistLogin(username) {
+    return `SELECT username, senha FROM medico WHERE username = '${username}'
+            UNION
+            SELECT username, senha FROM paciente WHERE username = '${username}'
+            UNION
+            SELECT username, senha FROM supervisor WHERE username = '${username}'
+            `
 }

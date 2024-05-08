@@ -2,16 +2,19 @@
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import User from '../models/user.js'
-import criarSQLInsercao from '../../database/utils.js'
-import db from '../../database/config-database.js'
+import dotenv from 'dotenv'
+
 
 
 export default () => {
+    dotenv.config()
     const controller = {};
-    
+    const secretKey = process.env.SECRET_KEY;
+
     controller.loginController = async (req, res) => {
         try {
             const { username, password } = req.body;
+            console.log(req.body);
 
             // const user = await User.findOne({ username });
             // if (!user) {
@@ -24,10 +27,11 @@ export default () => {
            
             const passwordMatch = await bcrypt.compare(password, user.password);
             
+            
             if (!passwordMatch) {
                 return res.status(401).json({ error: 'Authentication failed' });
             }
-            const token = jwt.sign({ userId: '66304d9d03957f8d08d63c51'}, 'your-secret-key', {
+            const token = jwt.sign({ userId: '66304d9d03957f8d08d63c51'}, secretKey, {
                 expiresIn: '1h',
             });
             res.status(200).json({ token });
