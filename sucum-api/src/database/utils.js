@@ -104,10 +104,10 @@ export function checkUserExistSupervisor(username){
 }
 
 export function checkUserExistLogin(username) {
-    return `SELECT username, senha FROM medico WHERE username = '${username}'
+    return `SELECT id, username, senha FROM medico WHERE username = '${username}'
             UNION
-            SELECT username, senha FROM paciente WHERE username = '${username}'
+            SELECT id, username, senha FROM paciente WHERE username = '${username}'
             UNION
-            SELECT username, senha FROM supervisor WHERE username = '${username}'
+            SELECT id, username, senha FROM supervisor WHERE username = '${username}'
             `
 }

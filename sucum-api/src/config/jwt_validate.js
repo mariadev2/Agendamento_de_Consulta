@@ -1,16 +1,20 @@
-require('dotenv').config()
+import dotenv from 'dotenv'
+import jwt from 'jsonwebtoken'
 
 export default (token)=>{
+    dotenv.config()
     const secretKey = process.env.SECRET_KEY;
     return new Promise((resolve, reject) => {
         jwt.verify(token, secretKey, (err, decoded) => {
             if (err) {
-                reject(err); // JWT verification failed
+                reject(new Error('Token has expired'));
             } else {
                 const now = Date.now() / 1000;
                 if (decoded.exp <= now) {
+                    console.log('expirou');
                     reject(new Error('Token has expired')); // JWT has expired
                 } else {
+                    console.log('entrou');
                     resolve(decoded); // JWT is valid
                 }
             }
