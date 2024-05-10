@@ -1,6 +1,7 @@
 import { Schema, model } from 'mongoose';
 
 const pacienteSchema = new Schema({
+    id: {type: String},
     username: { type: String, required: true },
     senha: { type: String, required: true },
     token: { type: String, required: true },

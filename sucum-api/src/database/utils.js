@@ -89,6 +89,12 @@ export function checkUserExistPaciente(username){
                 WHERE username = "${username}"`
 }
 
+export function checkUserExistPacienteById(id){
+    return `SELECT COUNT(*) AS count
+                FROM paciente 
+                WHERE id = "${id}"`
+}
+
 export function checkUserExistMedico(username){
     return `SELECT COUNT(*)
     FROM medico
