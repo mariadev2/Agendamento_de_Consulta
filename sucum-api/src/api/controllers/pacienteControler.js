@@ -37,21 +37,25 @@ export default () => {
     controller.updatePaciente = async (req, res) => {
         const getInstanceDB = db();
         const pacienteNew = returnNewPaciente(req.body)
-
-        const queryCheckExist = checkUserExistPacienteById(pacienteNew.id);
-        const queryUpdate = queryUpdatePaciente(pacienteNew);
-        const tokenTemp = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTcxNTQ3OTk4MywiZXhwIjoxNzE1NDgzNTgzfQ.6e9moSFfkZy1B-aKq7wHPQ67noq2nTC2BuA2_E_AImk"
-        jwtValidate(tokenTemp).then(e => {
-            getInstanceDB.query(queryCheckExist, (err, data)=>{
-                if (err) res.status(500).json({messageError: 'Upload failed: ' + err.sqlMessage});
-                if (data != null) {
-                    getInstanceDB.query(queryUpdate, (err, data)=>{
-                        if (err) res.status(500).json({messageError: 'Registration failed' + err.sqlMessage});
-                        return res.status(200).json({message: "Edited success"});
-                    })
-                }     
-            })
-        }).catch(e => res.status(401).json({message: "Unauthorized"}))
+        try {
+            const getToken = req.headers['authorization'].replace('Bearer', '').trim();
+            const queryCheckExist = checkUserExistPacienteById(pacienteNew.id);
+            const queryUpdate = queryUpdatePaciente(pacienteNew);
+            jwtValidate(getToken).then(e => {
+                getInstanceDB.query(queryCheckExist, (err, data)=>{
+                    if (err) res.status(500).json({messageError: 'Upload failed: ' + err.sqlMessage});
+                    if (data != null) {
+                        getInstanceDB.query(queryUpdate, (err, data)=>{
+                            if (err) res.status(500).json({messageError: 'Registration failed' + err.sqlMessage});
+                            return res.status(200).json({message: "Edited success"});
+                        })
+                    }     
+                })
+            }).catch(e => res.status(401).json({message: "Unauthorized"}))
+        } catch (error) {
+            return res.status(401).json({message: "Unauthorized"})
+        }
+        
     };
 
     controller.deletePaciente = async (req, res) => {
@@ -67,13 +71,20 @@ export default () => {
 
     controller.getAllPacientes = async (req, res) => {
         const getInstanceDB = db();
-
-        const queryGet = queryGetAllPacientes();
-        getInstanceDB.query(queryGet, (err, data)=>{
-            if (err) res.status(500).json({messageError: 'Get failed: ' + err.sqlMessage});
-            const result = Object.values(JSON.parse(JSON.stringify(data)));
-            return res.status(200).json({content: result}); 
-        })
+        try {
+            const getToken = req.headers['authorization'].replace('Bearer', '').trim();
+            const queryGet = queryGetAllPacientes();
+            jwtValidate(getToken).then(e => {
+                getInstanceDB.query(queryGet, (err, data)=>{
+                    if (err) res.status(500).json({messageError: 'Get failed: ' + err.sqlMessage});
+                    const result = Object.values(JSON.parse(JSON.stringify(data)));
+                    return res.status(200).json({content: result}); 
+                })
+            }).catch(e => res.status(401).json({message: "Unauthorized"}));
+        } catch (error) {
+           return res.status(401).json({message: "Unauthorized"})
+        }
+        
     }
 
     return controller;
