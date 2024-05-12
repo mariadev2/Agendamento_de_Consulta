@@ -11,10 +11,8 @@ export default (token)=>{
             } else {
                 const now = Date.now() / 1000;
                 if (decoded.exp <= now) {
-                    console.log('expirou');
                     reject(new Error('Token has expired')); // JWT has expired
                 } else {
-                    console.log('entrou');
                     resolve(decoded); // JWT is valid
                 }
             }

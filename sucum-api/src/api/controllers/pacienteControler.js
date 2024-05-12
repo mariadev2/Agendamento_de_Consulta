@@ -1,32 +1,24 @@
 
-import bcrypt from 'bcrypt'
 import db from '../../database/config-database.js'
 import Paciente from '../models/paciente.js';
-import {createSqlInsertPaciente, checkUserExistPaciente, checkUserExistPacienteById}  from '../../database/utils.js'
+import {createSqlInsertPaciente, 
+        checkUserExistPaciente, 
+        checkUserExistPacienteById, 
+        queryUpdatePaciente,
+        queryDeletePaciente,
+        queryGetAllPacientes
+        }  from '../../database/paciente/paciente-utils.js'
+import jwtValidate from '../../config/jwt_validate.js'
 
 export default () => {
     const controller = {};
+
     controller.signUpPaciente = async (req, res) => {
         const getInstanceDB = db();
-        const getDate = new Date().toISOString();
-        const {username, bairro, celular, cidade, cpf, dataNascimento, numeroCasa, senha, email, cep } = req.body;
-        
-        const paciente = new Paciente({
-                username: username ?? null, 
-                senha: senha ?? null, 
-                bairro: bairro ?? null, 
-                celular: celular ?? null, 
-                cidade: cidade ?? null, 
-                cpf: cpf ?? null, 
-                dataNascimento: dataNascimento ?? null, 
-                email: email ?? null, 
-                numeroCasa: numeroCasa ?? null, 
-                cep: cep ?? null,
-                createTime: getDate
-            });
+        const pacienteNew = returnNewPaciente(req.body)
           
-        const querySaveAccount = createSqlInsertPaciente(paciente)
-        const queryCheckExist = checkUserExistPaciente(paciente.username)
+        const querySaveAccount = createSqlInsertPaciente(pacienteNew)
+        const queryCheckExist = checkUserExistPaciente(pacienteNew.username)
      
         getInstanceDB.query(queryCheckExist, (err, data)=>{
             if (err) res.status(500).json({messageError: 'Registration failed: ' + err.sqlMessage});
@@ -42,41 +34,67 @@ export default () => {
         })
     };
 
-    controller.updatePaciente = async (req, res) =>{
+    controller.updatePaciente = async (req, res) => {
         const getInstanceDB = db();
-        const getDate = new Date().toISOString();
-        const {id, username, bairro, celular, cidade, cpf, dataNascimento, numeroCasa, senha, email, cep } = req.body;
+        const pacienteNew = returnNewPaciente(req.body)
 
-        const paciente = new Paciente({
-            id: id ?? null,
-            username: username ?? null, 
-            senha: senha ?? null, 
-            bairro: bairro ?? null, 
-            celular: celular ?? null, 
-            cidade: cidade ?? null, 
-            cpf: cpf ?? null, 
-            dataNascimento: dataNascimento ?? null, 
-            email: email ?? null, 
-            numeroCasa: numeroCasa ?? null, 
-            cep: cep ?? null,
-            createTime: getDate
-        });
+        const queryCheckExist = checkUserExistPacienteById(pacienteNew.id);
+        const queryUpdate = queryUpdatePaciente(pacienteNew);
+        const tokenTemp = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTcxNTQ3OTk4MywiZXhwIjoxNzE1NDgzNTgzfQ.6e9moSFfkZy1B-aKq7wHPQ67noq2nTC2BuA2_E_AImk"
+        jwtValidate(tokenTemp).then(e => {
+            getInstanceDB.query(queryCheckExist, (err, data)=>{
+                if (err) res.status(500).json({messageError: 'Upload failed: ' + err.sqlMessage});
+                if (data != null) {
+                    getInstanceDB.query(queryUpdate, (err, data)=>{
+                        if (err) res.status(500).json({messageError: 'Registration failed' + err.sqlMessage});
+                        return res.status(200).json({message: "Edited success"});
+                    })
+                }     
+            })
+        }).catch(e => res.status(401).json({message: "Unauthorized"}))
+    };
 
-        const queryCheckExist = checkUserExistPacienteById(paciente.id)
+    controller.deletePaciente = async (req, res) => {
+        const getInstanceDB = db();
+        const {id} = req.body;
 
-        getInstanceDB.query(queryCheckExist, (err, data)=>{
-            if (err) res.status(500).json({messageError: 'Upload failed: ' + err.sqlMessage});
+        const queryDelete = queryDeletePaciente(id);
+        getInstanceDB.query(queryDelete, (err, data)=>{
+            if (err) res.status(500).json({messageError: 'Delete failed: ' + err.sqlMessage});
+            return res.status(200).json({message: "Delete success"}); 
+        })
+    }
 
-            if (data[0].count > 0 ) {
-                return res.status(200).json({message: "Já existe um paciente com esse nome"});
-            }else{
-                getInstanceDB.query(querySaveAccount, (err, data)=>{
-                    if (err) res.status(500).json({messageError: 'Registration failed' + err.sqlMessage});
-                    return res.status(200).json({message: "Salvo com sucesso"});
-                })
-            }         
+    controller.getAllPacientes = async (req, res) => {
+        const getInstanceDB = db();
+
+        const queryGet = queryGetAllPacientes();
+        getInstanceDB.query(queryGet, (err, data)=>{
+            if (err) res.status(500).json({messageError: 'Get failed: ' + err.sqlMessage});
+            const result = Object.values(JSON.parse(JSON.stringify(data)));
+            return res.status(200).json({content: result}); 
         })
     }
 
     return controller;
+}
+
+function returnNewPaciente(data) {
+    const getDate = new Date().toISOString();
+    const paciente = new Paciente({
+        id: data.id ?? null,
+        username: data.username ?? null, 
+        senha: data.senha ?? null, 
+        bairro: data.bairro ?? null, 
+        celular: data.celular ?? null, 
+        cidade: data.cidade ?? null, 
+        cpf: data.cpf ?? null, 
+        dataNascimento: data.dataNascimento ?? null, 
+        email: data.email ?? null, 
+        numeroCasa: data.numeroCasa ?? null, 
+        cep: data.cep ?? null,
+        createTime: getDate
+    });
+
+    return paciente; 
 }

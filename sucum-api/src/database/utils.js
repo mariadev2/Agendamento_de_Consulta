@@ -1,14 +1,3 @@
-export function createSqlInsertPaciente(dados) {
-    return `INSERT INTO paciente (createTime, username, senha, 
-                                        token, dataNascimento, celular, 
-                                        cep, numeroCasa, bairro, cidade, email, cpf) 
-                        VALUES ("${dados.createTime}","${dados.username}","${dados.senha}",
-                                "${dados.token}","${dados.dataNascimento}","${dados.celular}",
-                                "${dados.cep}","${dados.numeroCasa}","${dados.bairro}",
-                                "${dados.cidade}","${dados.email}","${dados.cpf}");`;
-    
-}
-
 export function queryCreatePacienteTable(){
     return  `CREATE TABLE IF NOT EXISTS paciente (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -81,18 +70,6 @@ export function queryCreateQuestionarioTable(){
         usoMedicamento VARCHAR(255),
         alergia VARCHAR(255)
     )`
-}
-
-export function checkUserExistPaciente(username){
-    return `SELECT COUNT(*) AS count
-                FROM paciente 
-                WHERE username = "${username}"`
-}
-
-export function checkUserExistPacienteById(id){
-    return `SELECT COUNT(*) AS count
-                FROM paciente 
-                WHERE id = "${id}"`
 }
 
 export function checkUserExistMedico(username){
