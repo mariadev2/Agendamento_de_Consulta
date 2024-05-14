@@ -20,7 +20,7 @@ export default app  => {
  *              type: object
  *              properties:
  *                username:
- *                  type: string
+ *                   type: string
  *                senha:
  *                   type: string
  *                email:
@@ -50,27 +50,27 @@ export default app  => {
  *                username:
  *                  type: string
  *                senha:
- *                   type: string
+ *                  type: string
  *                dataNascimento:
- *                   type: string
+ *                  type: string
  *                bairro:
- *                   type: string
+ *                  type: string
  *                cep:
- *                   type: string
+ *                  type: string
  *                celular:
- *                   type: string
+ *                  type: string
  *                cidade:
- *                   type: string
+ *                  type: string
  *                cpf:
- *                   type: string
+ *                  type: string
  *                numeroCasa:
- *                   type: number
+ *                  type: number
  *                email:
- *                   type: string
+ *                  type: string
  *                crm:
- *                   type: string
+ *                  type: string
  *                especializacao:
- *                   type: string
+ *                  type: string
  *     responses:
  *       200:
  *         description: String
@@ -98,10 +98,10 @@ app.route('/api/v1/signUpMedico').post(controllerMedico().signUpMedico);
  *             schema:
  *              type: object
  *              properties:
- *                 id:
- *                  type: number
+ *                id:
+ *                   type: number
  *                username:
- *                  type: string
+ *                   type: string
  *                senha:
  *                   type: string
  *                dataNascimento:
