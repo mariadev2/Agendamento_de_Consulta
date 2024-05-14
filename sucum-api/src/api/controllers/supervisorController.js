@@ -39,9 +39,12 @@ export default () => {
         const supervisorNew = returnNewSupervisor(req.body)
 
         try {
-            const getToken = req.headers['authorization'].replace('Bearer', '').trim();
             const queryCheckExist = checkUserExistSupervisorById(supervisorNew.id);
             const queryUpdate = queryUpdateSupervisor(supervisorNew);
+            let getToken = req.headers['authorization'];
+            if (getToken != undefined) {
+                getToken = getToken.replace('Bearer', '').trim();
+            }
             jwtValidate(getToken).then(e => {
                 getInstanceDB.query(queryCheckExist, (err, data)=>{
                     if (err) res.status(500).json({messageError: 'Upload failed: ' + err.sqlMessage});
@@ -75,8 +78,11 @@ export default () => {
     controller.getAllSupervisors = async (req, res) => {
         const getInstanceDB = db();
         try {
-            const getToken = req.headers['authorization'].replace('Bearer', '').trim();
             const queryGet = queryGetAllSupervisors();
+            let getToken = req.headers['authorization'];
+            if (getToken != undefined) {
+                getToken = getToken.replace('Bearer', '').trim();
+            }
             jwtValidate(getToken).then(e => {
                 getInstanceDB.query(queryGet, (err, data)=>{
                     if (err) res.status(500).json({messageError: 'Get failed: ' + err.sqlMessage});

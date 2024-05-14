@@ -1,10 +1,10 @@
 import { Schema, model } from 'mongoose';
 
 const medicoSchema = new Schema({
+    id: {type: Number, required: true},
     username: { type: String, required: true },
-    password: { type: String, required: true },
-    token: { type: String, required: true },
-    dataNascimento: { type: Date, required: true },
+    senha: { type: String, required: true },
+    dataNascimento: { type: String, required: true },
     celular: { type: String, required: true },
     numeroCasa: { type: Number, required: true },
     bairro: { type: String, required: true },
