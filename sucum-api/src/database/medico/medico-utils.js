@@ -46,3 +46,9 @@ export function queryDeleteMedico(id){
 export function queryGetAllMedicos(){
     return `SELECT * FROM medico`
 }
+
+export function queryGetMedicoById(id){
+    return `SELECT *
+    FROM medico
+    WHERE id =${id}`
+}

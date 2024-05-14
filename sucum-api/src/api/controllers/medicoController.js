@@ -2,18 +2,43 @@
 import db from '../../database/config-database.js'
 import Medico from '../models/medico.js';
 import PreMedico from '../models/preMedico.js';
-import {createSqlInsertMedico, 
-        createSqlInsertPreMedico,
+import { createSqlInsertPreMedico,
         checkUserExistMedico, 
         checkUserExistMedicoById, 
         queryUpdateMedico,
         queryDeleteMedico,
-        queryGetAllMedicos
-        }  from '../../database/Medico/Medico-utils.js'
+        queryGetAllMedicos,
+        queryGetMedicoById
+        }  from '../../database/medico/medico-utils.js'
 import jwtValidate from '../../config/jwt_validate.js'
 
 export default () => {
     const controller = {};
+
+    controller.getMedicoById = async (req, res) => {
+        const getInstanceDB = db();
+        const {id} = req.body;
+        try {
+            let getToken = req.headers['authorization'];
+        if (getToken != undefined) {
+            getToken = getToken.replace('Bearer', '').trim();
+        }
+        const queryGet = queryGetMedicoById(id);
+        jwtValidate(getToken).then(e => {
+            getInstanceDB.query(queryGet, (err, data)=>{
+                if (err) res.status(500).json({messageError: 'Registration failed: ' + err.sqlMessage});
+                if (data.length > 0) {
+                    const result = Object.values(JSON.parse(JSON.stringify(data)));
+                    return res.status(200).json({data: result});
+                }else{
+                    res.status(400).json({messageError: 'Usuario is not exist'});
+                }
+            })
+        }).catch(e => res.status(401).json({message: "Unauthorized"}))
+        } catch (error) {
+            return res.status(401).json({message: "Unauthorized"})
+        }
+    }
 
     controller.preSignUpMedico = async (req, res) => {
         const getInstanceDB = db();

@@ -169,4 +169,32 @@ app.route('/api/v1/signUpMedico').post(controllerMedico().signUpMedico);
  *         description: String
  */
     app.route('/api/v1/getAllMedicos').get(controllerMedico().getAllMedicos);
+/**
+ * @swagger
+ * /api/v1/getMedicoById:
+ *   get:
+ *     description: Retorna os dados do paciente
+ *     parameters:
+ *        - name: Authorization
+ *          in: header
+ *          description: Token de autenticação JWT
+ *          required: true
+ *          schema:
+ *            type: string
+ *     tags:
+ *      - Medico
+ *     requestBody:
+ *      required: true
+ *      content:
+ *          application/json:
+ *             schema:
+ *              type: object
+ *              properties:
+ *                id:
+ *                  type: number
+ *     responses:
+ *       200:
+ *         description: String
+ */
+    app.route('/api/v1/getMedicoById').get(controllerMedico().getMedicoById);
 }

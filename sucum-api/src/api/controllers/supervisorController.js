@@ -6,12 +6,38 @@ import {createSqlInsertSupervisor,
         checkUserExistSupervisorById, 
         queryUpdateSupervisor,
         queryDeleteSupervisor,
-        queryGetAllSupervisors
+        queryGetAllSupervisors,
+        queryGetSupervisorById
         }  from '../../database/supervisor/supervisor-utils.js'
 import jwtValidate from '../../config/jwt_validate.js'
 
 export default () => {
     const controller = {};
+
+    controller.getSupervisorById = async (req, res) => {
+        const getInstanceDB = db();
+        const {id} = req.body;
+        try {
+            let getToken = req.headers['authorization'];
+        if (getToken != undefined) {
+            getToken = getToken.replace('Bearer', '').trim();
+        }
+        const queryGet = queryGetSupervisorById(id);
+        jwtValidate(getToken).then(e => {
+            getInstanceDB.query(queryGet, (err, data)=>{
+                if (err) res.status(500).json({messageError: 'Registration failed: ' + err.sqlMessage});
+                if (data.length > 0) {
+                    const result = Object.values(JSON.parse(JSON.stringify(data)));
+                    return res.status(200).json({data: result});
+                }else{
+                    res.status(400).json({messageError: 'Usuario is not exist'});
+                }
+            })
+        }).catch(e => res.status(401).json({message: "Unauthorized"}))
+        } catch (error) {
+            return res.status(401).json({message: "Unauthorized"})
+        }
+    }
 
     controller.signUpSupervisor = async (req, res) => {
         const getInstanceDB = db();

@@ -41,3 +41,9 @@ export function queryDeletePaciente(id){
 export function queryGetAllPacientes(){
     return `SELECT * FROM paciente`
 }
+
+export function queryGetPacienteById(id){
+    return `SELECT *
+    FROM paciente
+    WHERE id =${id}`
+}

@@ -109,4 +109,32 @@ export default app  => {
  *         description: String
  */
     app.route('/api/v1/getAllSupervisor').get(controllerSupervisor().getAllSupervisors);
+/**
+ * @swagger
+ * /api/v1/getSupervisorById:
+ *   get:
+ *     description: Retorna os dados do paciente
+ *     parameters:
+ *        - name: Authorization
+ *          in: header
+ *          description: Token de autenticação JWT
+ *          required: true
+ *          schema:
+ *            type: string
+ *     tags:
+ *      - Supervisor
+ *     requestBody:
+ *      required: true
+ *      content:
+ *          application/json:
+ *             schema:
+ *              type: object
+ *              properties:
+ *                id:
+ *                  type: number
+ *     responses:
+ *       200:
+ *         description: String
+ */
+app.route('/api/v1/getSupervisorById').get(controllerSupervisor().getSupervisorById);
 }

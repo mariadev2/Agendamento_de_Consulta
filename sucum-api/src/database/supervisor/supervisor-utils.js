@@ -32,3 +32,9 @@ export function queryDeleteSupervisor(id){
 export function queryGetAllSupervisors(){
     return `SELECT * FROM supervisor`
 }
+
+export function queryGetSupervisorById(id){
+    return `SELECT *
+    FROM supervisor
+    WHERE id =${id}`
+}
