@@ -2,6 +2,8 @@ import express from 'express';
 import get from './default.json' assert { type: "json" };
 import userRoute from '../api/routes/userRoute.js'
 import createTable from '../config/create_tables_if_not_exists.js'
+import pacienteRoute from '../api/routes/pacienteRoute.js';
+import supervisorRoute from '../api/routes/supervisorRoute.js';
 
 
 export default  () => {
@@ -18,7 +20,9 @@ export default  () => {
   createTable();
 
   //ROUTES
-  userRoute(app)
+  userRoute(app);
+  supervisorRoute(app);
+  pacienteRoute(app);
 
   return app;
 };

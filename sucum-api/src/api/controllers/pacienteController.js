@@ -44,12 +44,14 @@ export default () => {
             jwtValidate(getToken).then(e => {
                 getInstanceDB.query(queryCheckExist, (err, data)=>{
                     if (err) res.status(500).json({messageError: 'Upload failed: ' + err.sqlMessage});
-                    if (data != null) {
+                    if (data.length > 0) {
                         getInstanceDB.query(queryUpdate, (err, data)=>{
                             if (err) res.status(500).json({messageError: 'Registration failed' + err.sqlMessage});
                             return res.status(200).json({message: "Edited success"});
                         })
-                    }     
+                    }else{
+                        res.status(400).json({messageError: 'Upload failed: id not exist'});
+                    }    
                 })
             }).catch(e => res.status(401).json({message: "Unauthorized"}))
         } catch (error) {
