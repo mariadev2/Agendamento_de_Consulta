@@ -13,7 +13,8 @@ import {createSqlInsertPaciente,
 import jwtValidate from '../../config/jwt_validate.js'
 import {createSqlInsertQuestionario,
         createSqlUpdatePacienteQuestionario, 
-        createSqlUpdateQuestionario } from '../../database/questionario/questionario-utils.js';
+        createSqlUpdateQuestionario,
+        deleteQuestionario } from '../../database/questionario/questionario-utils.js';
 import Questionario from '../models/questionario.js';
 
 export default () => {
@@ -119,10 +120,23 @@ export default () => {
         const {id} = req.body;
 
         const queryDelete = queryDeletePaciente(id);
-        getInstanceDB.query(queryDelete, (err, data)=>{
-            if (err) res.status(500).json({messageError: 'Delete failed: ' + err.sqlMessage});
-            return res.status(200).json({message: "Delete success"}); 
+        const queryCheckExist = checkUserExistPacienteById(id);
+        const queryDeleteQuestionario = deleteQuestionario(id)
+        getInstanceDB.query(queryCheckExist, (err, data)=>{
+            if (data.length > 0) {
+                if (err) res.status(500).json({messageError: 'Delete failed: ' + err.sqlMessage});
+                getInstanceDB.query(queryDelete, (err, data)=>{
+                    if (err) res.status(500).json({messageError: 'Delete failed: ' + err.sqlMessage});
+                    getInstanceDB.query(queryDeleteQuestionario, (err, data)=>{
+                        if (err) res.status(500).json({messageError: 'Delete failed: ' + err.sqlMessage});
+                        return res.status(200).json({message: "Delete success"}); 
+                    })
+                })
+            }else{
+                res.status(400).json({messageError: 'Delete failed: id not exist'});
+            } 
         })
+        
     }
 
     controller.getAllPacientes = async (req, res) => {

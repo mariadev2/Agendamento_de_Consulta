@@ -19,3 +19,8 @@ export function createSqlUpdateQuestionario(dados, id) {
                 alergia = "${dados.alergia}"
             WHERE idPaciente = ${id};`;
 }
+
+export function deleteQuestionario(id) {
+    return `DELETE FROM questionario
+            WHERE idPaciente = ${id}`
+}
