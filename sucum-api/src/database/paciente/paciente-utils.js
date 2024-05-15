@@ -24,10 +24,10 @@ export function queryUpdatePaciente(dados){
 
 export function createSqlInsertPaciente(dados) {
     return `INSERT INTO paciente (createTime, username, senha, 
-                                        token, dataNascimento, celular, 
+                                        dataNascimento, celular, 
                                         cep, numeroCasa, bairro, cidade, email, cpf) 
                         VALUES ("${dados.createTime}","${dados.username}","${dados.senha}",
-                                "${dados.token}","${dados.dataNascimento}","${dados.celular}",
+                                "${dados.dataNascimento}","${dados.celular}",
                                 "${dados.cep}","${dados.numeroCasa}","${dados.bairro}",
                                 "${dados.cidade}","${dados.email}","${dados.cpf}");`;
     
@@ -46,4 +46,10 @@ export function queryGetPacienteById(id){
     return `SELECT *
     FROM paciente
     WHERE id =${id}`
+}
+
+export function queryGetPacienteByUsername(username){
+    return `SELECT *
+    FROM paciente
+    WHERE username = "${username}"`
 }

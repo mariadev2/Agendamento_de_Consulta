@@ -7,9 +7,14 @@ import {createSqlInsertPaciente,
         queryUpdatePaciente,
         queryDeletePaciente,
         queryGetAllPacientes,
-        queryGetPacienteById
+        queryGetPacienteById,
+        queryGetPacienteByUsername
         }  from '../../database/paciente/paciente-utils.js'
 import jwtValidate from '../../config/jwt_validate.js'
+import {createSqlInsertQuestionario,
+        createSqlUpdatePacienteQuestionario, 
+        createSqlUpdateQuestionario } from '../../database/questionario/questionario-utils.js';
+import Questionario from '../models/questionario.js';
 
 export default () => {
     const controller = {};
@@ -41,10 +46,12 @@ export default () => {
 
     controller.signUpPaciente = async (req, res) => {
         const getInstanceDB = db();
-        const pacienteNew = returnNewPaciente(req.body)
+        const pacienteNew = returnNewPaciente(req.body.paciente);
+        const questionarioNew = returnNewQuestionario(req.body.questionario);
           
-        const querySaveAccount = createSqlInsertPaciente(pacienteNew)
-        const queryCheckExist = checkUserExistPaciente(pacienteNew.username)
+        const querySaveAccount = createSqlInsertPaciente(pacienteNew);
+        const queryCheckExist = checkUserExistPaciente(pacienteNew.username);
+        const queryCheckExistPaciente = queryGetPacienteByUsername(pacienteNew.username);
      
         getInstanceDB.query(queryCheckExist, (err, data)=>{
             if (err) res.status(500).json({messageError: 'Registration failed: ' + err.sqlMessage});
@@ -53,8 +60,20 @@ export default () => {
                 return res.status(200).json({message: "Já existe um paciente com esse nome"});
             }else{
                 getInstanceDB.query(querySaveAccount, (err, data)=>{
-                    if (err) res.status(500).json({messageError: 'Registration failed' + err.sqlMessage});
-                    return res.status(200).json({message: "Success"});
+                    if (err) res.status(500).json({messageError: 'Registration failed: ' + err.sqlMessage});
+                        getInstanceDB.query(queryCheckExistPaciente, (err, data)=>{
+                            if (err) res.status(500).json({messageError: 'Sql error: ' + err.sqlMessage});
+                            const result = Object.values(JSON.parse(JSON.stringify(data)));
+                            const querySaveQuestionario = createSqlInsertQuestionario(questionarioNew, result[0].id)
+                            const queryUpdatePaciente = createSqlUpdatePacienteQuestionario(result[0].id)
+                            getInstanceDB.query(querySaveQuestionario, (err, data)=>{
+                                if (err) res.status(500).json({messageError: 'Sql error: ' + err.sqlMessage});
+                                getInstanceDB.query(queryUpdatePaciente, (err, data)=>{
+                                    if (err) res.status(500).json({messageError: 'Sql error: ' + err.sqlMessage});
+                                    return res.status(200).json({message: "Successs"});
+                                })
+                            })
+                        })
                 })
             }         
         })
@@ -62,10 +81,13 @@ export default () => {
 
     controller.updatePaciente = async (req, res) => {
         const getInstanceDB = db();
-        const pacienteNew = returnNewPaciente(req.body)
+        const pacienteNew = returnNewPaciente(req.body.paciente)
+        const questionarioNew = returnNewQuestionario(req.body.questionario);
         try {
             const queryCheckExist = checkUserExistPacienteById(pacienteNew.id);
             const queryUpdate = queryUpdatePaciente(pacienteNew);
+            const queryUpdateQuestionario =  createSqlUpdateQuestionario(questionarioNew, pacienteNew.id)
+            console.log(queryUpdateQuestionario);
             let getToken = req.headers['authorization'];
             if (getToken != undefined) {
                 getToken = getToken.replace('Bearer', '').trim();
@@ -76,7 +98,10 @@ export default () => {
                     if (data.length > 0) {
                         getInstanceDB.query(queryUpdate, (err, data)=>{
                             if (err) res.status(500).json({messageError: 'Registration failed' + err.sqlMessage});
-                            return res.status(200).json({message: "Edited success"});
+                            getInstanceDB.query(queryUpdateQuestionario, (err, data)=>{
+                                if (err) res.status(500).json({messageError: 'Registration failed' + err.sqlMessage});
+                                return res.status(200).json({message: "Edited success"});
+                            })  
                         })
                     }else{
                         res.status(400).json({messageError: 'Upload failed: id not exist'});
@@ -142,4 +167,16 @@ function returnNewPaciente(data) {
     });
 
     return paciente; 
+}
+
+function returnNewQuestionario(data) {
+    const getDate = new Date().toISOString();
+    const questionario = new Questionario({
+        createTime: getDate,
+        problemaSaude: data.problemaSaude ?? null,
+        usoMedicamento: data.usoMedicamento ?? null,
+        alergia: data.alergia ?? null
+    });
+
+    return questionario; 
 }

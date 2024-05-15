@@ -1,10 +1,9 @@
 export function queryCreatePacienteTable(){
     return  `CREATE TABLE IF NOT EXISTS paciente (
         id INT AUTO_INCREMENT PRIMARY KEY,
-        createTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        createTime VARCHAR(255),
         username VARCHAR(255) NOT NULL,
         password VARCHAR(255) NOT NULL,
-        token VARCHAR(255),
         dataNascimento DATE,
         celular VARCHAR(20),
         cep VARCHAR(10),
@@ -12,14 +11,15 @@ export function queryCreatePacienteTable(){
         bairro VARCHAR(255),
         cidade VARCHAR(255),
         email VARCHAR(255),
-        cpf VARCHAR(14)
+        cpf VARCHAR(14),
+        idQuestionario INT
     )`;
 }
 
 export function queryCreateSupervisorTable(){
     return `CREATE TABLE IF NOT EXISTS supervisor(  
         id int NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'Primary Key',
-        create_time DATETIME COMMENT 'Create Time',
+        createTime VARCHAR(255),
         name VARCHAR(255),
         senha VARCHAR(255),
         email VARCHAR(255),
@@ -30,7 +30,7 @@ export function queryCreateSupervisorTable(){
 export function queryCreateMedicoTable(){
     return `CREATE TABLE IF NOT EXISTS medico(  
         id int NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'Primary Key',
-        create_time DATETIME COMMENT 'Create Time',
+        createTime VARCHAR(255),
         username VARCHAR(255),
         password VARCHAR(255),
         token VARCHAR(255),
@@ -50,7 +50,7 @@ export function queryCreateMedicoTable(){
 export function queryCreateConsultaTable() {
     return `CREATE TABLE IF NOT EXISTS consulta(  
         id int NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'Primary Key',
-        create_time DATETIME COMMENT 'Create Time',
+        createTime VARCHAR(255),
         tipoConsulta VARCHAR(255),
         descricaoConsulta VARCHAR(255),
         estadoConsulta VARCHAR(255),
@@ -64,8 +64,8 @@ export function queryCreateConsultaTable() {
 
 export function queryCreateQuestionarioTable(){
     return `CREATE TABLE IF NOT EXISTS questionario(  
-        id int NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'Primary Key',
-        create_time DATETIME COMMENT 'Create Time',
+        idPaciente int NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'Primary Key',
+        createTime VARCHAR(255),
         problemaSaude VARCHAR(255),
         usoMedicamento VARCHAR(255),
         alergia VARCHAR(255)
