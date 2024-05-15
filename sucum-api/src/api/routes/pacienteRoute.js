@@ -19,26 +19,38 @@ export default app  => {
  *             schema:
  *              type: object
  *              properties:
- *                username:
- *                  type: string
- *                senha:
- *                   type: string
- *                dataNascimento:
- *                   type: string
- *                bairro:
- *                   type: string
- *                cep:
- *                   type: string
- *                celular:
- *                   type: string
- *                cidade:
- *                   type: string
- *                cpf:
- *                   type: string
- *                numeroCasa:
- *                   type: number
- *                email:
- *                   type: string
+ *                paciente:
+ *                  type: object
+ *                  properties:
+ *                     username:
+ *                       type: string
+ *                     senha:
+ *                       type: string
+ *                     dataNascimento:
+ *                       type: string
+ *                     bairro:
+ *                       type: string
+ *                     cep:
+ *                       type: string
+ *                     celular:
+ *                       type: string
+ *                     cidade:
+ *                       type: string
+ *                     cpf:
+ *                       type: string
+ *                     numeroCasa:
+ *                       type: number
+ *                     email:
+ *                       type: string
+ *                questionario:
+ *                  type: object
+ *                  properties:
+ *                    problemaSaude:
+ *                      type: string
+ *                    usoMedicamento:
+ *                      type: string
+ *                    alergia:
+ *                      type: string
  *     responses:
  *       200:
  *         description: String
@@ -66,28 +78,40 @@ export default app  => {
  *             schema:
  *              type: object
  *              properties:
- *                id:
- *                  type: number
- *                username:
- *                  type: string
- *                senha:
- *                   type: string
- *                dataNascimento:
- *                   type: string
- *                bairro:
- *                   type: string
- *                cep:
- *                   type: string
- *                celular:
- *                   type: string
- *                cidade:
- *                   type: string
- *                cpf:
- *                   type: string
- *                numeroCasa:
- *                   type: number
- *                email:
- *                   type: string
+ *                paciente:
+ *                  type: object
+ *                  properties:
+ *                     id:
+ *                       type: number
+ *                     username:
+ *                       type: string
+ *                     senha:
+ *                       type: string
+ *                     dataNascimento:
+ *                       type: string
+ *                     bairro:
+ *                       type: string
+ *                     cep:
+ *                       type: string
+ *                     celular:
+ *                       type: string
+ *                     cidade:
+ *                       type: string
+ *                     cpf:
+ *                       type: string
+ *                     numeroCasa:
+ *                       type: number
+ *                     email:
+ *                       type: string
+ *                questionario:
+ *                  type: object
+ *                  properties:
+ *                    problemaSaude:
+ *                      type: string
+ *                    usoMedicamento:
+ *                      type: string
+ *                    alergia:
+ *                      type: string
  *     responses:
  *       200:
  *         description: String
