@@ -19,7 +19,7 @@ export default () => {
         const getInstanceDB = db();
         const {id} = req.body;
         try {
-            let getToken = req.headers['authorization'];
+        let getToken = req.headers['authorization'];
         if (getToken != undefined) {
             getToken = getToken.replace('Bearer', '').trim();
         }
@@ -42,10 +42,10 @@ export default () => {
 
     controller.preSignUpMedico = async (req, res) => {
         const getInstanceDB = db();
-        const PreMedicoNew = returnNewPreMedico(req.body)
+        const preMedicoNew = returnNewPreMedico(req.body)
           
-        const querySaveAccount = createSqlInsertPreMedico(PreMedicoNew)
-        const queryCheckExist = checkUserExistMedico(PreMedicoNew)
+        const querySaveAccount = createSqlInsertPreMedico(preMedicoNew)
+        const queryCheckExist = checkUserExistMedico(preMedicoNew)
      
         getInstanceDB.query(queryCheckExist, (err, data)=>{
             if (err) res.status(500).json({messageError: 'Registration failed: ' + err.sqlMessage});

@@ -9,7 +9,12 @@ const options = {
       description: 'Documentação da API - SUCUM',
     },
   },
-  apis: ['./src/api/routes/userRoute.js','./src/api/routes/pacienteRoute.js', './src/api/routes/supervisorRoute.js', './src/api/routes/medicoRoute.js'], // Arquivos que contêm as rotas da API
+  apis: ['./src/api/routes/userRoute.js',
+        './src/api/routes/pacienteRoute.js', 
+        './src/api/routes/supervisorRoute.js', 
+        './src/api/routes/medicoRoute.js',
+        './src/api/routes/consultaRoute.js'
+      ], // Arquivos que contêm as rotas da API
 };
 
 const specs = swaggerJSDoc(options);

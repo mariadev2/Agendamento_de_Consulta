@@ -5,6 +5,7 @@ import createTable from '../config/create_tables_if_not_exists.js'
 import pacienteRoute from '../api/routes/pacienteRoute.js';
 import supervisorRoute from '../api/routes/supervisorRoute.js';
 import medicoRoute from '../api/routes/medicoRoute.js';
+import consultaRoute from '../api/routes/consultaRoute.js';
 
 
 export default  () => {
@@ -25,6 +26,7 @@ export default  () => {
   supervisorRoute(app);
   pacienteRoute(app);
   medicoRoute(app);
+  consultaRoute(app);
 
   return app;
 };
