@@ -62,13 +62,6 @@ export default app  => {
  * /api/v1/updatePaciente:
  *   post:
  *     description: Retorna uma mensagem contendo o status da requisição
- *     parameters:
- *        - name: Authorization
- *          in: header
- *          description: Token de autenticação JWT
- *          required: true
- *          schema:
- *            type: string
  *     tags:
  *      - Paciente
  *     requestBody:
@@ -143,13 +136,6 @@ export default app  => {
  * /api/v1/getAllPacientes:
  *   get:
  *     description: Retorna uma lista de pacientes
- *     parameters:
- *        - name: Authorization
- *          in: header
- *          description: Token de autenticação JWT
- *          required: true
- *          schema:
- *            type: string
  *     tags:
  *      - Paciente
  *     responses:
@@ -160,15 +146,8 @@ export default app  => {
 /**
  * @swagger
  * /api/v1/getPacienteById:
- *   get:
+ *   post:
  *     description: Retorna os dados do paciente
- *     parameters:
- *        - name: Authorization
- *          in: header
- *          description: Token de autenticação JWT
- *          required: true
- *          schema:
- *            type: string
  *     tags:
  *      - Paciente
  *     requestBody:
@@ -184,5 +163,5 @@ export default app  => {
  *       200:
  *         description: String
  */
-    app.route('/api/v1/getPacienteById').get(controllerPaciente().getPacienteById);
+    app.route('/api/v1/getPacienteById').post(controllerPaciente().getPacienteById);
 }

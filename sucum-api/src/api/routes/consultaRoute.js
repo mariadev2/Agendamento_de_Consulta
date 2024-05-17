@@ -43,13 +43,6 @@ export default app  => {
  * /api/v1/updateConsulta:
  *   post:
  *     description: Retorna uma mensagem contendo o status da requisição
- *     parameters:
- *        - name: Authorization
- *          in: header
- *          description: Token de autenticação JWT
- *          required: true
- *          schema:
- *            type: string
  *     tags:
  *      - Consulta
  *     requestBody:
@@ -75,13 +68,6 @@ export default app  => {
  * /api/v1/getAllConsultas:
  *   get:
  *     description: Retorna uma lista de Consultas
- *     parameters:
- *        - name: Authorization
- *          in: header
- *          description: Token de autenticação JWT
- *          required: true
- *          schema:
- *            type: string
  *     tags:
  *      - Consulta
  *     responses:
@@ -92,15 +78,8 @@ export default app  => {
 /**
  * @swagger
  * /api/v1/getConsultaById:
- *   get:
+ *   post:
  *     description: Retorna os dados da consulta
- *     parameters:
- *        - name: Authorization
- *          in: header
- *          description: Token de autenticação JWT
- *          required: true
- *          schema:
- *            type: string
  *     tags:
  *      - Consulta
  *     requestBody:
@@ -116,7 +95,7 @@ export default app  => {
  *       200:
  *         description: String
  */
-    app.route('/api/v1/getConsultaById').get(controllerConsulta().getConsultaById);
+    app.route('/api/v1/getConsultaById').post(controllerConsulta().getConsultaById);
 /**
  * @swagger
  * /api/v1/deleteConsulta:

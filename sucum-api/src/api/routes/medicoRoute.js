@@ -82,13 +82,6 @@ app.route('/api/v1/signUpMedico').post(controllerMedico().signUpMedico);
  * /api/v1/updateMedico:
  *   post:
  *     description: Retorna uma mensagem contendo o status da requisição
- *     parameters:
- *        - name: Authorization
- *          in: header
- *          description: Token de autenticação JWT
- *          required: true
- *          schema:
- *            type: string
  *     tags:
  *      - Medico
  *     requestBody:
@@ -155,13 +148,6 @@ app.route('/api/v1/signUpMedico').post(controllerMedico().signUpMedico);
  * /api/v1/getAllMedicos:
  *   get:
  *     description: Retorna uma lista de Medicos
- *     parameters:
- *        - name: Authorization
- *          in: header
- *          description: Token de autenticação JWT
- *          required: true
- *          schema:
- *            type: string
  *     tags:
  *      - Medico
  *     responses:
@@ -172,15 +158,8 @@ app.route('/api/v1/signUpMedico').post(controllerMedico().signUpMedico);
 /**
  * @swagger
  * /api/v1/getMedicoById:
- *   get:
+ *   post:
  *     description: Retorna os dados do paciente
- *     parameters:
- *        - name: Authorization
- *          in: header
- *          description: Token de autenticação JWT
- *          required: true
- *          schema:
- *            type: string
  *     tags:
  *      - Medico
  *     requestBody:
@@ -196,5 +175,5 @@ app.route('/api/v1/signUpMedico').post(controllerMedico().signUpMedico);
  *       200:
  *         description: String
  */
-    app.route('/api/v1/getMedicoById').get(controllerMedico().getMedicoById);
+    app.route('/api/v1/getMedicoById').post(controllerMedico().getMedicoById);
 }

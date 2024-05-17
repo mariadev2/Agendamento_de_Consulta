@@ -38,13 +38,6 @@ export default app  => {
  * /api/v1/updateSupervisor:
  *   post:
  *     description: Retorna uma mensagem contendo o status da requisição
- *     parameters:
- *        - name: Authorization
- *          in: header
- *          description: Token de autenticação JWT
- *          required: true
- *          schema:
- *            type: string
  *     tags:
  *      - Supervisor
  *     requestBody:
@@ -95,13 +88,6 @@ export default app  => {
  * /api/v1/getAllSupervisor:
  *   get:
  *     description: Retorna uma lista de Supervisors
- *     parameters:
- *        - name: Authorization
- *          in: header
- *          description: Token de autenticação JWT
- *          required: true
- *          schema:
- *            type: string
  *     tags:
  *      - Supervisor
  *     responses:
@@ -112,15 +98,8 @@ export default app  => {
 /**
  * @swagger
  * /api/v1/getSupervisorById:
- *   get:
+ *   post:
  *     description: Retorna os dados do paciente
- *     parameters:
- *        - name: Authorization
- *          in: header
- *          description: Token de autenticação JWT
- *          required: true
- *          schema:
- *            type: string
  *     tags:
  *      - Supervisor
  *     requestBody:
@@ -136,5 +115,5 @@ export default app  => {
  *       200:
  *         description: String
  */
-app.route('/api/v1/getSupervisorById').get(controllerSupervisor().getSupervisorById);
+app.route('/api/v1/getSupervisorById').post(controllerSupervisor().getSupervisorById);
 }

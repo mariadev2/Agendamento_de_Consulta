@@ -119,7 +119,7 @@ export default () => {
                 getToken = getToken.replace('Bearer', '').trim();
             }
             jwtValidate(getToken).then(e => {
-                getInstanceDB.query(queryGet, (err, data)=>{
+                 getInstanceDB.query(queryGet, (err, data)=>{
                     if (err) res.status(500).json({messageError: 'Get failed: ' + err.sqlMessage});
                     const result = Object.values(JSON.parse(JSON.stringify(data)));
                 
