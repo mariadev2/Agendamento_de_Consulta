@@ -74,14 +74,13 @@ export default () => {
         jwtValidate(getToken).then(e => {
             getInstanceDB.query(queryCheckExist, (err, data)=>{
                 if (err) res.status(500).json({messageError: 'Registration failed: ' + err.sqlMessage});
-    
                 if (data[0].count > 0 ) {
                     getInstanceDB.query(queryUpdateAccount, (err, data)=>{
                         if (err) res.status(500).json({messageError: 'Registration failed' + err.sqlMessage});
                         return res.status(200).json({message: "Salvo com sucesso"});
                     })  
                 }else{
-                    return res.status(400).json({message: "Not exist medico with this id"});
+                    return res.status(400).json({message: "Not exist medico with this name"});
                 }
             })
         }).catch(e => res.status(401).json({message: "Unauthorized"}));
@@ -107,7 +106,7 @@ export default () => {
                             return res.status(200).json({message: "Edited success"});
                         })
                     }else{
-                        res.status(400).json({messageError: 'Upload failed: id not exist'});
+                        res.status(400).json({messageError: 'Update failed: id not exist'});
                     }    
                 })
             }).catch(e => res.status(401).json({message: "Unauthorized"}))

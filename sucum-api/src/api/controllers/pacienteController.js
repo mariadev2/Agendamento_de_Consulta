@@ -88,7 +88,6 @@ export default () => {
             const queryCheckExist = checkUserExistPacienteById(pacienteNew.id);
             const queryUpdate = queryUpdatePaciente(pacienteNew);
             const queryUpdateQuestionario =  createSqlUpdateQuestionario(questionarioNew, pacienteNew.id)
-            console.log(queryUpdateQuestionario);
             let getToken = req.headers['authorization'];
             if (getToken != undefined) {
                 getToken = getToken.replace('Bearer', '').trim();
@@ -105,7 +104,7 @@ export default () => {
                             })  
                         })
                     }else{
-                        res.status(400).json({messageError: 'Upload failed: id not exist'});
+                        res.status(400).json({messageError: 'Update failed: id not exist'});
                     }    
                 })
             }).catch(e => res.status(401).json({message: "Unauthorized"}))

@@ -14,3 +14,32 @@ export function checkConsultaExist(descricaoConsulta){
             WHERE descricaoConsulta = "${descricaoConsulta}"
             `
 }
+
+export function checkConsultaExistById(id){
+    return `SELECT COUNT(*) AS count
+            FROM consulta
+            WHERE id = ${id}
+            `
+}
+
+export function queryDeleteConsulta(id){
+    return `DELETE FROM consulta
+            WHERE id = ${id}`
+}
+
+export function queryUpdateConsulta(dados){
+    return `UPDATE consulta
+            SET estadoConsulta = "${dados.estadoConsulta}",
+                descricaoConsulta = "${dados.descricaoConsulta}"
+            WHERE id = ${dados.id};`;
+}
+
+export function queryGetAllConsultas(){
+    return `SELECT * FROM consulta`
+}
+
+export function queryGetConsultaById(id){
+    return `SELECT *
+    FROM consulta
+    WHERE id =${id}`
+}

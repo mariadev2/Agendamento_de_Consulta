@@ -80,7 +80,7 @@ export default () => {
                             return res.status(200).json({message: "Edited success"});
                         })
                     }else{
-                        res.status(400).json({messageError: 'Upload failed: id not exist'});
+                        res.status(400).json({messageError: 'Update failed: id not exist'});
                     }    
                 })
             }).catch(e => res.status(401).json({message: "Unauthorized"}))

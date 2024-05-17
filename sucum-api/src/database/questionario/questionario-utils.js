@@ -6,7 +6,6 @@ export function createSqlInsertQuestionario(dados, id) {
 }
 
 export function createSqlUpdatePacienteQuestionario(id) {
-    console.log(id);
     return `UPDATE paciente
              SET idQuestionario = ${id}
              WHERE id = ${id};`

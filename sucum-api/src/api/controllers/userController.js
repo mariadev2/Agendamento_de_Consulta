@@ -21,14 +21,13 @@ export default () => {
             getInstanceDB.query(queryLogin, (err, data)=>{
                 if (err) res.status(500).json({messageError: 'Error sql: ' + err.sqlMessage});
                 const result = Object.values(JSON.parse(JSON.stringify(data)));
-
                 if (result.length > 0) {
                     result.forEach(element => {
                         if (element.username === username && element.senha === senha) {
                             const token = jwt.sign({ userId: element.id}, secretKey, {
                                 expiresIn: '1h',
                             });
-                            return res.status(200).json({tokenJWT: token});
+                            return res.status(200).json({tokenJWT: token, id: result[0].id, username: result[0].username});
                         }else{
                             return res.status(401).json({message: "Password invalid"});
                         }

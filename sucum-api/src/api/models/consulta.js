@@ -1,6 +1,7 @@
 import { Schema, model } from 'mongoose';
 
 const consultaSchema = new Schema({
+    id: {type: Number},
     createTime: { type: String, required: true },
     tipoConsulta: { type: String, required: true },
     descricaoConsulta: { type: String, required: true },
