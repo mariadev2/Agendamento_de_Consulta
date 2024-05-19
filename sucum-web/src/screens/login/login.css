@@ -1,0 +1,86 @@
+input {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 700;
+    width: 400px;
+    padding: .7rem;
+    max-width: 400px;
+}
+  
+
+.loginContainer{
+    width: 100%;
+    filter: drop-shadow(5px 5px 5px #222);
+    height: 100vh;
+    background-image: url('../../assets/background-login.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    align-items: center;
+    display: flex;
+}
+
+.formContainer{
+    width: 400px;
+    margin: auto;
+    padding: 1em;
+}
+
+.formContainer form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.formContainer form button{
+    width: 120px;
+    color: #fff;
+    font-weight: 700;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: #044CF6;
+}
+
+.userContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.userContainer div{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background: #fff;
+    border-radius: 100%;
+    width: 200px;
+    height: 200px;
+}
+
+.userContainer .title{
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-family: sans-serif;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.userContainer .subtitle{
+    margin-bottom: 10px;
+    font-family: sans-serif;
+    color: #fff;
+    font-size: 20px;
+}
+
+.labelError{
+    font-weight: bold;
+    font-family: sans-serif;
+    color: #fff;
+    margin-top: 10px;
+}

@@ -4,7 +4,6 @@ import swaggerSpecs from '../../../swaggerConfig.js'
 
 
 export default app  => {
-    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
 /**
  * @swagger
  * /api/v1/preSignUpMedico:

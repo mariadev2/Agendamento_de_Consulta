@@ -7,6 +7,9 @@ import supervisorRoute from '../api/routes/supervisorRoute.js';
 import medicoRoute from '../api/routes/medicoRoute.js';
 import consultaRoute from '../api/routes/consultaRoute.js';
 
+import swaggerUi from 'swagger-ui-express';
+import swaggerSpecs from '../../swaggerConfig.js'
+import cors from 'cors'
 
 export default  () => {
   const app = express();
@@ -16,12 +19,16 @@ export default  () => {
 
   // MIDDLEWARES
   app.use(express.json());
-  
+
+  //CORS
+  app.use(cors());
+  app.options('*', cors());
 
   //CREATE INIT TABLES
   createTable();
 
   //ROUTES
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
   userRoute(app);
   supervisorRoute(app);
   pacienteRoute(app);

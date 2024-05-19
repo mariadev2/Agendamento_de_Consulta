@@ -26,8 +26,7 @@ const options = {
       },
     ],
   },
-  apis: ['./src/api/routes/userRoute.js',
-        './src/api/routes/pacienteRoute.js', 
+  apis: ['./src/api/routes/pacienteRoute.js', 
         './src/api/routes/supervisorRoute.js', 
         './src/api/routes/medicoRoute.js',
         './src/api/routes/consultaRoute.js'
