@@ -38,11 +38,11 @@ const Login = () => {
         }
         if (login != null && senha != null) {
             const result  = await loginService(data);
-            console.log(result);
             if (result) {
                 switch (result.status) {
                     case 200:
                             localStorage.setItem('tokenAuth', result.data.tokenJWT)
+                            localStorage.setItem('perfil', result.data.perfil)
                             navigate('/');
                             setLabelError('')
                         break;
@@ -56,13 +56,10 @@ const Login = () => {
                     default:
                         break;
                 }
-            }
-
-            
+            } 
         }
     };
     
-
     return (
         <div className='loginContainer'>
             <div className='formContainer'>

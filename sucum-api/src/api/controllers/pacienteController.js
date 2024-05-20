@@ -176,6 +176,7 @@ function returnNewPaciente(data) {
         email: data.email ?? null, 
         numeroCasa: data.numeroCasa ?? null, 
         cep: data.cep ?? null,
+        genero: data.genero,
         createTime: getDate
     });
 

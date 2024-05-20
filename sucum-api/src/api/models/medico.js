@@ -14,6 +14,7 @@ const medicoSchema = new Schema({
     cep: { type: String, required: true },
     createTime : {type: String, required: true},
     crm:  { type: String, required: true },
+    genero: {type: String, required: true},
     especializacao :  { type: String, required: true },
  });
 

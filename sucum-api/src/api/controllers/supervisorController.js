@@ -132,6 +132,7 @@ function returnNewSupervisor(data) {
         username: data.username ?? null, 
         senha: data.senha ?? null, 
         email: data.email ?? null, 
+        genero: data.genero,
         areaSupervisao: data.areaSupervisao ?? null,
         createTime: getDate
     });

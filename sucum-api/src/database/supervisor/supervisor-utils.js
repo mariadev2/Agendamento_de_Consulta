@@ -13,14 +13,16 @@ export function queryUpdateSupervisor(dados){
             SET username = "${dados.username}",
                 email = "${dados.email}",
                 senha = "${dados.senha}",
+                genero = "${dados.genero},
                 areaSupervisao = "${dados.areaSupervisao}"
             WHERE id = ${dados.id};`;
 }
 
 export function createSqlInsertSupervisor(dados) {
     return `INSERT INTO supervisor (createTime, username, senha, 
-                                    email, areaSupervisao) 
-                        VALUES ("${dados.createTime}","${dados.username}","${dados.senha}","${dados.email}","${dados.areaSupervisao}");`;
+                                    email, areaSupervisao, perfil, genero) 
+                        VALUES ("${dados.createTime}","${dados.username}","${dados.senha}","${dados.email}",
+                                "${dados.areaSupervisao}", "Supervisor", "${dados.genero}");`;
     
 }
 

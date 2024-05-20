@@ -167,6 +167,7 @@ function returnNewMedico(data) {
         cep: data.cep ?? null,
         crm: data.crm ?? null,
         especializacao: data.especializacao ?? null,
+        genero: data.genero,
         createTime: getDate
     });
 

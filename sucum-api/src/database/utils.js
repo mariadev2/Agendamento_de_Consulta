@@ -12,6 +12,8 @@ export function queryCreatePacienteTable(){
             cidade VARCHAR(255),
             email VARCHAR(255),
             cpf VARCHAR(14),
+            perfil VARCHAR (255),
+            genero VARCHAR (255),
             idQuestionario INT
         )`;
 }
@@ -23,6 +25,8 @@ export function queryCreateSupervisorTable(){
             name VARCHAR(255),
             senha VARCHAR(255),
             email VARCHAR(255),
+            perfil VARCHAR (255),
+            genero VARCHAR (255),
             areaSupervisao VARCHAR(255)
         )`
 }
@@ -43,6 +47,8 @@ export function queryCreateMedicoTable(){
             email VARCHAR(255),
             cpf VARCHAR(255),
             crm VARCHAR(255),
+            perfil VARCHAR (255),
+            genero VARCHAR (255),
             especializacao VARCHAR(255)
         )`
 }
@@ -72,10 +78,10 @@ export function queryCreateQuestionarioTable(){
 }
 
 export function checkUserExistLogin(username) {
-    return `SELECT id, username, senha FROM medico WHERE username = '${username}'
+    return `SELECT id, username, senha, perfil FROM medico WHERE username = '${username}'
             UNION
-            SELECT id, username, senha FROM paciente WHERE username = '${username}'
+            SELECT id, username, senha, perfil FROM paciente WHERE username = '${username}'
             UNION
-            SELECT id, username, senha FROM supervisor WHERE username = '${username}'
+            SELECT id, username, senha, perfil FROM supervisor WHERE username = '${username}'
             `
 }

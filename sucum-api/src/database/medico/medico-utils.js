@@ -18,6 +18,7 @@ export function queryUpdateMedico(dados){
                 cep = "${dados.cep}",
                 numeroCasa = "${dados.numeroCasa}",
                 bairro = "${dados.bairro}",
+                genero = "${dados.genero},
                 cidade = "${dados.cidade}",
                 cpf = "${dados.cpf}",
                 crm = "${dados.crm}",
@@ -25,16 +26,10 @@ export function queryUpdateMedico(dados){
             WHERE id = ${dados.id};`;
 }
 
-export function createSqlInsertMedico(dados) {
-    return `INSERT INTO medico (createTime, username, senha, 
-                                    email, areaSupervisao) 
-                        VALUES ("${dados.createTime}","${dados.username}","${dados.senha}","${dados.email}","${dados.areaSupervisao}");`;
-    
-}
 
 export function createSqlInsertPreMedico(dados) {
-    return `INSERT INTO medico (createTime, username, senha, email) 
-                        VALUES ("${dados.createTime}","${dados.username}","${dados.senha}","${dados.email}");`;
+    return `INSERT INTO medico (createTime, username, senha, email, perfil) 
+                        VALUES ("${dados.createTime}","${dados.username}","${dados.senha}","${dados.email}", "Medico");`;
     
 }
 

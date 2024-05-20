@@ -18,6 +18,7 @@ export function queryUpdatePaciente(dados){
                 numeroCasa = "${dados.numeroCasa}",
                 bairro = "${dados.bairro}",
                 cidade = "${dados.cidade}",
+                genero = "${dados.genero},
                 cpf = "${dados.cpf}"
             WHERE id = ${dados.id};`;
 }
@@ -25,11 +26,11 @@ export function queryUpdatePaciente(dados){
 export function createSqlInsertPaciente(dados) {
     return `INSERT INTO paciente (createTime, username, senha, 
                                         dataNascimento, celular, 
-                                        cep, numeroCasa, bairro, cidade, email, cpf) 
+                                        cep, numeroCasa, bairro, cidade, email, cpf, perfil, genero) 
                         VALUES ("${dados.createTime}","${dados.username}","${dados.senha}",
                                 "${dados.dataNascimento}","${dados.celular}",
                                 "${dados.cep}","${dados.numeroCasa}","${dados.bairro}",
-                                "${dados.cidade}","${dados.email}","${dados.cpf}");`;
+                                "${dados.cidade}","${dados.email}","${dados.cpf}","Paciente", "${dados.genero}");`;
     
 }
 

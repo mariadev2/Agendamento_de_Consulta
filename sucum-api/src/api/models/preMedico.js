@@ -5,6 +5,7 @@ const medicoPreSchema = new Schema({
     senha: { type: String, required: true },
     email: { type: String, required: true },
     createTime : {type: String, required: true},
+    genero: {type: String, required: true},
  });
 
 export default model('MedicoPre', medicoPreSchema);
