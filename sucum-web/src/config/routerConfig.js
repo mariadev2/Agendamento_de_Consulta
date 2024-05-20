@@ -4,6 +4,7 @@ import Login from "../screens/login/login";
 import Home from "../screens/home/home";
 
 import {ProtectedRoute} from "./ProtectedRoute";
+import SignUp from "../screens/signUp/signUp";
 
 export default  createBrowserRouter([
     {
@@ -13,5 +14,9 @@ export default  createBrowserRouter([
     {
       path: "/login",
       element: <Login />,
+    },
+    {
+      path: "/signUp",
+      element: <SignUp />,
     }
 ]);

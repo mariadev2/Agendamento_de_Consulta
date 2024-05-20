@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { loginService } from '../../service/loginService';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import userLogin from '../../assets/img-login.png'
 import { isExpired } from "react-jwt";
 import './login.css';
@@ -49,8 +49,8 @@ const Login = () => {
                     case 401:
                             setLabelError(result.data.message)
                         break;
-                    case 404:
-                            
+                    case 404 || 500:
+                            setLabelError("Serviço indisponivel")
                         break;
                 
                     default:
@@ -90,6 +90,9 @@ const Login = () => {
                             onChange={handlesenhaChange}
                             required
                         />
+                    </div>
+                    <div className='actionsLogin'>
+                        <Link to="/signUp" className='signUp'>Cadastre-se</Link>
                     </div>
                     <button type="submit" style={{ padding: '.5em 1em' }}>Entrar</button>
                     { labelError.length > 0 
