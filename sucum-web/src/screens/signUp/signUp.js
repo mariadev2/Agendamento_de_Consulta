@@ -51,6 +51,15 @@ const SignUp = () => {
     } else if (e.target.id === 'celular'){
         let value = e.target.value.replace(/\D/g, '');
         setFormData({ ...formData, [e.target.name]: value });
+    }  else if (e.target.id === 'endereco'){
+        let value = e.target.value.replace(/[^a-zA-Z0-9 ]/g, '');
+        setFormData({ ...formData, [e.target.name]: value });
+    }  else if (e.target.id === 'cidade'){
+        let value = e.target.value.replace(/[^a-zA-Z0-9 ]/g, '');
+        setFormData({ ...formData, [e.target.name]: value });
+    } else if (e.target.id === 'bairro'){
+        let value = e.target.value.replace(/[^a-zA-Z0-9 ]/g, '');
+        setFormData({ ...formData, [e.target.name]: value });
     } else if (e.target.id === 'numeroCasa'){
         let value = e.target.value.replace(/\D/g, '');
         setFormData({ ...formData, [e.target.name]: value });
