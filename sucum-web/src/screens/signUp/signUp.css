@@ -57,6 +57,40 @@
     gap: 20px;
 }
 
+.containerForm form .senhaContainer section, .containerForm form .cpfContainer section{
+    animation: ease-in-out;
+    transition: all 1s;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.containerForm form .senhaContainer span, .containerForm form .cpfContainer span{
+    animation: ease-in-out;
+    transition: all 1s;
+    display: flex;
+    gap: 20px;
+}
+
+.containerForm form .contentEmail .inputErrorCustom{
+    animation: ease-in-out;
+    transition: all 1s;
+    margin-top: 28px;
+    height: .7rem;
+}
+
+.containerForm form .contentEmail .email{
+    animation: ease-in-out;
+    transition: all 1s;
+}
+
+.containerForm form .contentEmail span{
+    animation: ease-in-out;
+    transition: all 1s;
+    flex-direction: column;
+    width: 60%;
+}
+
 .signUpContainer input {
     border: 1px solid #ccc;
     border-radius: 20px;
@@ -108,6 +142,16 @@
     margin-bottom: 30px;
 }
 
+.labelError{
+    animation: ease-in-out;
+    transition: all 1s;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: red;
+    margin-bottom: 5px;
+}
+
 
 @media only screen and (max-width: 600px) {
 
@@ -126,4 +170,4 @@
     }
    
     
-  }
+}
