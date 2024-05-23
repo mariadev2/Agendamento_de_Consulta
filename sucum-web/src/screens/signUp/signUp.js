@@ -205,13 +205,15 @@ const SignUp = () => {
                 <span>
                   <input type="password" id="password" minLength='8' title='Insira no mínimo 8 caracteres' name="senha" value={formData.senha} onChange={handleChange} placeholder='Senha' required/>
                   <input type="password" id="confirmSenha" title='Insira no mínimo 8 caracteres' minLength='8' value={formData.confirmSenha} onChange={handleChange} name="confirmSenha" placeholder='Confirme sua Senha' required/>
-                  <div style={{'alignItems': 'center'}}>
-                    <label htmlFor='masculino' style={{'color': '#fff','fontFamily':'sans-serif', 'fontWeight':'bold'}}>Masculino:</label>
-                    <input type="checkbox" value={formData.sexo} style={{'margin':'unset', 'padding':'unset'}} id="masculino" name="sexo" onChange={handlecheckboxChange} />
-                  </div>
-                  <div style={{'alignItems': 'center'}}>
-                    <label htmlFor='feminino' style={{'color': '#fff','fontFamily':'sans-serif', 'fontWeight':'bold'}}>Feminino:</label>
-                    <input type="checkbox" value={formData.sexo} style={{'margin':'unset', 'padding':'unset'}} id="feminino" name="sexo" onChange={handlecheckboxChange} />
+                  <div className='contentSexo'>
+                    <div style={{'alignItems': 'center'}}>
+                      <label htmlFor='masculino' style={{'color': '#fff','fontFamily':'sans-serif', 'fontWeight':'bold'}}>Masculino:</label>
+                      <input type="checkbox" value={formData.sexo} style={{'margin':'unset', 'padding':'unset'}} id="masculino" name="sexo" onChange={handlecheckboxChange} />
+                    </div>
+                    <div style={{'alignItems': 'center'}}>
+                      <label htmlFor='feminino' style={{'color': '#fff','fontFamily':'sans-serif', 'fontWeight':'bold'}}>Feminino:</label>
+                      <input type="checkbox" value={formData.sexo} style={{'margin':'unset', 'padding':'unset'}} id="feminino" name="sexo" onChange={handlecheckboxChange} />
+                    </div>
                   </div>
                 </span>
               </section>
@@ -238,37 +240,43 @@ const SignUp = () => {
               <h2>Questionário: </h2>
               <div className='contentQuestionario'>
                 <p>Possui algum problema de saúde?</p>
-                <div>
-                  <label htmlFor='sim1'>Sim</label>
-                  <input type="checkbox" id="sim1" name="sim" onChange={handlecheckboxChange} />
-                </div>
-                <div>
-                <label htmlFor='nao1'>Não</label>
-                <input type="checkbox" id="nao1" name="nao" onChange={handlecheckboxChange} required/>
+                <div className='contentBoxs'>
+                  <div>
+                    <label htmlFor='sim1'>Sim</label>
+                    <input type="checkbox" id="sim1" name="sim" onChange={handlecheckboxChange} />
+                  </div>
+                  <div>
+                    <label htmlFor='nao1'>Não</label>
+                    <input type="checkbox" id="nao1" name="nao" onChange={handlecheckboxChange} required/>
+                  </div>
                 </div>
                 <input type="text" id="resposta1" name="problemaSaude" value={formData.problemaSaude} onChange={handleChange} placeholder='Se sim, qual?' disabled required/>
               </div>
               <div className='contentQuestionario'>
                 <p>Faz uso de algum medicamento?</p>
-                <div>
-                  <label htmlFor='sim2'>Sim</label>
-                  <input type="checkbox" id="sim2" name="sim" onChange={handlecheckboxChange} />
-                </div>
-                <div>
-                <label htmlFor='nao2'>Não</label>
-                <input type="checkbox" id="nao2" name="nao" onChange={handlecheckboxChange} required/>
+                <div className='contentBoxs'>
+                  <div>
+                    <label htmlFor='sim2'>Sim</label>
+                    <input type="checkbox" id="sim2" name="sim" onChange={handlecheckboxChange} />
+                  </div>
+                  <div>
+                    <label htmlFor='nao2'>Não</label>
+                    <input type="checkbox" id="nao2" name="nao" onChange={handlecheckboxChange} required/>
+                  </div>
                 </div>
                 <input type="text" id="resposta2" name="usoMedicamento" value={formData.usoMedicamento} onChange={handleChange} placeholder='Se sim, qual?' disabled required/>
               </div>
               <div className='contentQuestionario'>
                 <p>Possui alergia?</p>
-                <div>
-                  <label htmlFor='sim3'>Sim</label>
-                  <input type="checkbox" id="sim3" name="sim" onChange={handlecheckboxChange} />
-                </div>
-                <div>
-                <label htmlFor='nao3'>Não</label>
-                <input type="checkbox" id="nao3" name="nao" onChange={handlecheckboxChange} required/>
+                <div className='contentBoxs'>
+                  <div>
+                    <label htmlFor='sim3'>Sim</label>
+                    <input type="checkbox" id="sim3" name="sim" onChange={handlecheckboxChange} />
+                  </div>
+                  <div>
+                    <label htmlFor='nao3'>Não</label>
+                    <input type="checkbox" id="nao3" name="nao" onChange={handlecheckboxChange} required/>
+                  </div>
                 </div>
                 <input type="text" id="resposta3" name="alergia" value={formData.alergia} onChange={handleChange} placeholder='Se sim, qual?' disabled required/>
               </div>

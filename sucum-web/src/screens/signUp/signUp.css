@@ -165,8 +165,39 @@
         scrollbar-color: #fff transparent;
         scrollbar-width: thin;
     }
+    .containerForm form #name{
+        width: unset;
+        max-width: unset;
+    }
 
+    .containerForm form .senhaContainer span{
+        flex-direction: column;
+    }
 
+    .containerForm form #password, .containerForm form #endereco, .containerForm form #cidade, .containerForm form #bairro{
+        width: unset;
+    }
+
+    .containerForm form #email{
+        width: 94%;
+    }
+
+    .containerForm form .contentEmail span{
+        width: unset;
+    }
+    .containerForm form .containerQuestionario .contentBoxs{
+        flex-direction: row;
+    }
+
+    .containerForm form .containerQuestionario #resposta1,  .containerForm form .containerQuestionario #resposta2,  .containerForm form .containerQuestionario #resposta3{
+        width: 93%;
+    } 
+
+    .containerForm form .senhaContainer .contentSexo{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
 
     .containerForm form div{
         flex-direction: column;
