@@ -34,6 +34,7 @@
 }
 .containerForm form button{
     font-weight: bold;
+    cursor: pointer;
     font-family: sans-serif;
     background-color: #EBE201;
     margin: 0 auto;
@@ -113,6 +114,10 @@
 
 .contentCep, .contentEmail{
     justify-content: space-between;
+}
+
+.contentEmail #cidade{
+    width: 15%;
 }
 
 .containerForm form input{

@@ -13,7 +13,7 @@ export function queryCreatePacienteTable(){
             email VARCHAR(255),
             cpf VARCHAR(14),
             perfil VARCHAR (255),
-            genero VARCHAR (255),
+            sexo VARCHAR (255),
             idQuestionario INT
         )`;
 }

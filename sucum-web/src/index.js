@@ -8,11 +8,11 @@ import routerConfig from './config/routerConfig';
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  <React.Fragment key="key">
     <RouterProvider router={routerConfig}>
       <App />
     </RouterProvider>
-  </React.StrictMode>
+  </React.Fragment >
 );
 
 reportWebVitals();

@@ -58,7 +58,7 @@ export default () => {
             if (err) res.status(500).json({messageError: 'Registration failed: ' + err.sqlMessage});
 
             if (data[0].count > 0 ) {
-                return res.status(200).json({message: "Já existe um paciente com esse nome"});
+                return res.status(400).json({message: "Já existe um paciente com esse nome"});
             }else{
                 getInstanceDB.query(querySaveAccount, (err, data)=>{
                     if (err) res.status(500).json({messageError: 'Registration failed: ' + err.sqlMessage});
@@ -172,16 +172,21 @@ function returnNewPaciente(data) {
         celular: data.celular ?? null, 
         cidade: data.cidade ?? null, 
         cpf: data.cpf ?? null, 
-        dataNascimento: data.dataNascimento ?? null, 
+        dataNascimento: formatDateToBrazilian(data.dataNascimento) ?? null, 
         email: data.email ?? null, 
         numeroCasa: data.numeroCasa ?? null, 
         cep: data.cep ?? null,
-        genero: data.genero,
+        sexo: data.sexo,
         createTime: getDate
     });
 
     return paciente; 
 }
+
+const formatDateToBrazilian = (dateString) => {
+    const [year, month, day] = dateString.split('-');
+    return `${day}/${month}/${year}`;
+  };
 
 function returnNewQuestionario(data) {
     const getDate = new Date().toISOString();

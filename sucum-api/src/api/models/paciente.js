@@ -12,7 +12,7 @@ const pacienteSchema = new Schema({
     email: { type: String, required: true },
     cpf: { type: String, required: true },
     cep: { type: String, required: true },
-    genero: {type: String, required: true},
+    sexo: {type: String, required: true},
     createTime : {type: String, required: true}
  });
 

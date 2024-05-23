@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { loginService } from '../../service/loginService';
+import { loginService } from '../../service/userService';
 import { Link, useNavigate } from "react-router-dom";
 import userLogin from '../../assets/img-login.png'
 import { isExpired } from "react-jwt";

@@ -26,11 +26,11 @@ export function queryUpdatePaciente(dados){
 export function createSqlInsertPaciente(dados) {
     return `INSERT INTO paciente (createTime, username, senha, 
                                         dataNascimento, celular, 
-                                        cep, numeroCasa, bairro, cidade, email, cpf, perfil, genero) 
+                                        cep, numeroCasa, bairro, cidade, email, cpf, perfil, sexo) 
                         VALUES ("${dados.createTime}","${dados.username}","${dados.senha}",
                                 "${dados.dataNascimento}","${dados.celular}",
                                 "${dados.cep}","${dados.numeroCasa}","${dados.bairro}",
-                                "${dados.cidade}","${dados.email}","${dados.cpf}","Paciente", "${dados.genero}");`;
+                                "${dados.cidade}","${dados.email}","${dados.cpf}","Paciente", "${dados.sexo}");`;
     
 }
 

@@ -1,15 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import InputMask from 'react-input-mask';
+import { useNavigate } from "react-router-dom";
 import './signUp.css';
+import { signUpService } from '../../service/userService';
+import Loading from '../../components/Loading/loading';
 
 const SignUp = () => {
   const [errors, setErrors] = useState({});
+  const [stateLoading, setStateLoading] = useState(false);
+  const [stateRequest, setStateRequest] = useState(false);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: '',
     dataNascimento: '',
     senha: '',
     confirmSenha: '',
     cpf: '',
+    sexo: '',
     cep: '',
     endereco: '',
     numeroCasa: '',
@@ -79,6 +86,17 @@ const SignUp = () => {
     const simCheckbox3 = document.getElementById('sim3');
     const naoCheckbox3 = document.getElementById('nao3');
     const resposta3 = document.getElementById('resposta3');
+    const masculino = document.getElementById('masculino');
+    const feminino = document.getElementById('feminino');
+    const { name } = e.target;
+
+    if (e.target.id === 'masculino') {
+      feminino.checked = false;
+      setFormData({ ...formData, [name]: 'Masculino' });
+    }else if(e.target.id === 'feminino'){
+      masculino.checked = false;
+      setFormData({ ...formData, [name]: 'Feminino' });
+    }
 
     if (e.target.id === 'sim1') {
       naoCheckbox1.removeAttribute('required')
@@ -119,9 +137,48 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      // Aqui você pode adicionar o código para enviar os dados para o servidor.
+      setStateLoading(true)
+    signUpService(formData).then((e)=>{
+      if (e.status === 200) {
+        setStateLoading(false)
+        setStateRequest(true)
+        setTimeout(() => {
+          navigate('/login');
+        }, 2);
+      }else{
+        setStateLoading(false)
+        alert(e.data.message)
+      }
+    }).catch((e)=>{
+      setStateLoading(false)
+      alert('Erro no cadastro, tente novamente mais tarde')
+    })
     }
   };
+
+  useEffect(() => {
+    setStateRequest(false);
+    setFormData({
+      username: '',
+      dataNascimento: '',
+      senha: '',
+      confirmSenha: '',
+      cpf: '',
+      sexo: '',
+      cep: '',
+      endereco: '',
+      numeroCasa: '',
+      bairro: '',
+      cidade: '',
+      email: '',
+      telefone: '',
+      celular: '',
+      problemaSaude: '',
+      usoMedicamento: '',
+      alergia: ''
+    })
+  }, [navigate])
+  
 
   return (
     <div className='signUpContainer'>
@@ -131,7 +188,7 @@ const SignUp = () => {
           <h3>Seja bem vindo paciente</h3>
           <form id="registrationForm" onSubmit={handleSubmit}>
             <div>
-                <input type="text" id="name" name="username" placeholder='Nome completo' value={formData.username} onChange={handleChange} />
+                <input type="text" id="name" name="username" placeholder='Nome completo' value={formData.username} onChange={handleChange} required />
             </div>
             <div className='cpfContainer'>
               <section>
@@ -146,19 +203,27 @@ const SignUp = () => {
               <section>
                 {errors.confirmSenha && <p className='labelError'>{errors.confirmSenha}</p>}
                 <span>
-                  <input type="password" id="password" name="senha" value={formData.senha} onChange={handleChange} placeholder='Senha' required/>
-                  <input type="password" id="confirmSenha" value={formData.confirmSenha} onChange={handleChange} name="confirmSenha" placeholder='Confirme sua Senha' required/>
+                  <input type="password" id="password" minLength='8' title='Insira no mínimo 8 caracteres' name="senha" value={formData.senha} onChange={handleChange} placeholder='Senha' required/>
+                  <input type="password" id="confirmSenha" title='Insira no mínimo 8 caracteres' minLength='8' value={formData.confirmSenha} onChange={handleChange} name="confirmSenha" placeholder='Confirme sua Senha' required/>
+                  <div style={{'alignItems': 'center'}}>
+                    <label htmlFor='masculino' style={{'color': '#fff','fontFamily':'sans-serif', 'fontWeight':'bold'}}>Masculino:</label>
+                    <input type="checkbox" value={formData.sexo} style={{'margin':'unset', 'padding':'unset'}} id="masculino" name="sexo" onChange={handlecheckboxChange} />
+                  </div>
+                  <div style={{'alignItems': 'center'}}>
+                    <label htmlFor='feminino' style={{'color': '#fff','fontFamily':'sans-serif', 'fontWeight':'bold'}}>Feminino:</label>
+                    <input type="checkbox" value={formData.sexo} style={{'margin':'unset', 'padding':'unset'}} id="feminino" name="sexo" onChange={handlecheckboxChange} />
+                  </div>
                 </span>
               </section>
             </div>
             <div className='contentCep'>
-                <input type="text" id="cep" name="cep" value={formData.cep}  onChange={handleChange} placeholder='CEP' />
-                <input type="text" id="endereco" name="endereco" value={formData.endereco}  onChange={handleChange} placeholder='Endereço' />
-                <input type="text" id="numeroCasa" name="numeroCasa" value={formData.numeroCasa}  onChange={handleChange} placeholder='N°' />
+                <input type="text" id="cep" name="cep" value={formData.cep}  onChange={handleChange} placeholder='CEP' required/>
+                <input type="text" id="endereco" name="endereco" value={formData.endereco}  onChange={handleChange} placeholder='Endereço' required/>
+                <input type="text" id="numeroCasa" name="numeroCasa" value={formData.numeroCasa}  onChange={handleChange} placeholder='N°' required/>
             </div>
             <div className='contentEmail'>
-                <input type="text" id="bairro" name="bairro"  className={errors.email != null ? 'inputErrorCustom' : ''} value={formData.bairro} onChange={handleChange} placeholder='Bairro' />
-                <input type="text" id="cidade" className={errors.email != null ? 'inputErrorCustom' : ''} name="cidade" value={formData.cidade} onChange={handleChange} placeholder='Cidade' />
+                <input type="text" id="bairro" name="bairro"  className={errors.email != null ? 'inputErrorCustom' : ''} value={formData.bairro} onChange={handleChange} placeholder='Bairro' required/>
+                <input type="text" id="cidade" className={errors.email != null ? 'inputErrorCustom' : ''} name="cidade" value={formData.cidade} onChange={handleChange} placeholder='Cidade' required/>
                 <span>
                 {errors.email && <p className='labelError'>{errors.email}</p>}
                 <input type="email" id="email" className='email' name="email" value={formData.email} onChange={handleChange} placeholder='E-mail' />
@@ -166,8 +231,8 @@ const SignUp = () => {
               
             </div>
             <div>
-              <InputMask mask="(99) 9999-9999" type="text" id="telefone" value={formData.telefone} name="telefone" onChange={handleChange} placeholder='Telefone' />
-              <InputMask mask="(99) 99999-9999" type="text" id="celular" name="celular" value={formData.celular} onChange={handleChange} placeholder='Celular'/>
+              <InputMask mask="(99) 9999-9999" type="text" id="telefone" value={formData.telefone} name="telefone" onChange={handleChange} placeholder='Telefone' required/>
+              <InputMask mask="(99) 99999-9999" type="text" id="celular" name="celular" value={formData.celular} onChange={handleChange} placeholder='Celular' required/>
             </div>
             <div className='containerQuestionario'>
               <h2>Questionário: </h2>
@@ -209,6 +274,8 @@ const SignUp = () => {
               </div>
             </div>
             <button type="submit">Cadastrar</button>
+            {stateLoading === true ? <Loading/> : <div></div>}
+            {stateRequest === true ? <h3 style={{'margin': '0 auto'}}>Cadastrado com sucesso</h3>: <div></div>}
           </form>
         </div>
         
