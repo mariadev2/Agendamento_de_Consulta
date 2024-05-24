@@ -1,0 +1,142 @@
+.containerHome{
+    z-index: -1;
+    background-position-x: right;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    width: 50%;
+    height: 100vh;
+    filter: drop-shadow(1px 1px 1px #000);
+    background-image: url('../../assets/background-login.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    align-items: center;
+    display: flex;
+}
+
+.sectionYellow{
+    z-index: -1;
+    position: absolute;
+    background-color: #D9D9D9;
+    height: 100%;
+    width: 50%;
+}
+
+.navBar{
+    margin-top: 20px;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    background: transparent;
+    position: fixed;
+    z-index: 3;
+}
+
+.iconProfile{
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    margin-right: 10px;
+    background: #ddd;
+    right: 0;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    gap: 5px;
+    border-radius: 30px;
+}
+.navBarOptions{
+    height: 40px;
+    align-items: center;
+    gap: 20px;
+    display: flex;
+    margin: 0 auto;
+}
+
+.navBarOptions p{
+    font-weight: 600;
+    text-align: left;
+    font-family: sans-serif;
+    font-size: 18px;
+    color: grey;
+}
+
+.iconProfile p{
+    margin-left: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100px;
+}
+
+.iconProfile img{
+    width: 40px;
+}
+
+.navBarOptions p.active{
+    color: #044CF6;
+}
+
+.contentText{
+    padding: 60px;
+    width: 40%;
+    position: absolute;
+    height: 400px;
+    margin-top: 5%;
+}
+
+.contentText p{
+    line-height: 40px;
+    text-align: left;
+    font-family: sans-serif;
+    font-size: 24px;
+    color: #044CF6;
+}
+
+.contentText span{
+    display: flex;
+    align-items: center;
+}
+
+.contentText span div{
+    position: absolute;
+    width: 100px;
+    height: 3px;
+    background: yellow;
+    left: -20px;
+}
+
+.contentText span p{
+    margin-left: 40px;
+    font-weight: bold;
+}
+
+.contentText h2{   
+    font-weight: bold;
+    font-size: 32px;
+    font-family: sans-serif;
+    color: #044CF6;
+    margin: 20px 0px 20px 0px;
+}
+
+.contentHelp{
+    left: 40px;
+    width: 50px;
+    height: 50px;
+    background-image: url('../../assets/communication.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    bottom: 20px;
+}
+.contentHelp:hover{
+    cursor: pointer;
+}
+
+.contentConsultas{
+    margin: 0 auto;
+    position: relative;
+    top: 70%;
+    height: 600px;
+    width: 65%;
+    background: aqua;
+}

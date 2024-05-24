@@ -42,7 +42,9 @@ const Login = () => {
                 switch (result.status) {
                     case 200:
                             localStorage.setItem('tokenAuth', result.data.tokenJWT)
-                            localStorage.setItem('perfil', result.data.perfil)
+                            localStorage.setItem('profile', result.data.perfil)
+                            localStorage.setItem('username', result.data.username)
+                            localStorage.setItem('sexo', result.data.sexo)
                             navigate('/');
                             setLabelError('')
                         break;
@@ -76,7 +78,7 @@ const Login = () => {
                             type="text"
                             id="login"
                             value={login}
-                            placeholder='Nome'
+                            placeholder='Nome ou CPF'
                             onChange={handleLoginChange}
                             required
                         />

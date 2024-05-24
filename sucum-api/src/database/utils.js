@@ -26,7 +26,8 @@ export function queryCreateSupervisorTable(){
             senha VARCHAR(255),
             email VARCHAR(255),
             perfil VARCHAR (255),
-            genero VARCHAR (255),
+            sexo VARCHAR (255),
+            cpf VARCHAR (255),
             areaSupervisao VARCHAR(255)
         )`
 }
@@ -78,10 +79,10 @@ export function queryCreateQuestionarioTable(){
 }
 
 export function checkUserExistLogin(username) {
-    return `SELECT id, username, senha, perfil FROM medico WHERE username = '${username}'
+    return `SELECT id, username, senha, cpf, sexo, perfil FROM medico WHERE username = '${username}' OR cpf = '${username}'
             UNION
-            SELECT id, username, senha, perfil FROM paciente WHERE username = '${username}'
+            SELECT id, username, senha, cpf, sexo, perfil FROM paciente WHERE username = '${username}' OR cpf = '${username}'
             UNION
-            SELECT id, username, senha, perfil FROM supervisor WHERE username = '${username}'
+            SELECT id, username, senha, cpf, sexo, perfil FROM supervisor WHERE username = '${username}' OR cpf = '${username}'
             `
 }
