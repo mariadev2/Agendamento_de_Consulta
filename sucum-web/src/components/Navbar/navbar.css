@@ -1,0 +1,97 @@
+
+.navBar{
+    padding-top: 10px;
+    width: 100%;
+    height: 60px;
+    align-items: center;
+    display: flex;
+    background: transparent;
+    transition:  0.5s ease;
+    position: fixed;
+    z-index: 3;
+}
+
+.navBar.scrolled{
+    background-color: aliceblue;
+}
+
+.navBar .logo{
+    height: 60px;
+    border-radius: 50%;
+    width: 60px;
+    margin-left: 15px;
+}
+
+.iconProfile{
+    border: none;
+    position: absolute;
+    width: 150px;
+    cursor: pointer;
+    z-index: 3;
+    border-bottom: 1px solid grey;
+    height: 50px;
+    margin-right: 10px;
+    background: #ddd;
+    right: 0;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    grid-gap: 5px;
+    gap: 5px;
+    border-radius: 30px;
+}
+.navBarOptions{
+    height: 40px;
+    align-items: center;
+    gap: 20px;
+    display: flex;
+    margin: 0 auto;
+}
+
+.navBarOptions p{
+    font-weight: 600;
+    text-align: left;
+    font-family: sans-serif;
+    font-size: 18px;
+    color: grey;
+}
+
+.iconProfile p{
+    margin-left: 5px;
+    font-size: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100px;
+}
+
+.iconProfile img{
+    width: 40px;
+}
+
+.containerProfile{
+    height: 110px;
+    width: 145px;
+    right: 11px;
+    top: 20px;
+    border-radius: 10px;
+    background: #ddd;
+    position: absolute;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+    transition: opacity 0.5s ease-out, max-height 0.5s ease-out;
+}
+
+
+.containerProfile a{
+    font-weight: 600;
+    color: #044CF6;
+    font-family: sans-serif;
+    text-decoration: none;
+}
+
+.navBarOptions p.active{
+    color: #044CF6;
+}

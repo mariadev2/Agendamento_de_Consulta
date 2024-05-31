@@ -22,60 +22,6 @@
     width: 50%;
 }
 
-.navBar{
-    margin-top: 20px;
-    width: 100%;
-    height: 60px;
-    display: flex;
-    background: transparent;
-    position: fixed;
-    z-index: 3;
-}
-
-.iconProfile{
-    position: absolute;
-    width: 150px;
-    height: 40px;
-    margin-right: 10px;
-    background: #ddd;
-    right: 0;
-    display: flex;
-    align-items: center;
-    padding: 5px;
-    gap: 5px;
-    border-radius: 30px;
-}
-.navBarOptions{
-    height: 40px;
-    align-items: center;
-    gap: 20px;
-    display: flex;
-    margin: 0 auto;
-}
-
-.navBarOptions p{
-    font-weight: 600;
-    text-align: left;
-    font-family: sans-serif;
-    font-size: 18px;
-    color: grey;
-}
-
-.iconProfile p{
-    margin-left: 5px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 100px;
-}
-
-.iconProfile img{
-    width: 40px;
-}
-
-.navBarOptions p.active{
-    color: #044CF6;
-}
-
 .contentText{
     padding: 60px;
     width: 40%;
@@ -133,10 +79,80 @@
 }
 
 .contentConsultas{
+    padding: 20px;
+    max-width: 1100px;
+    min-height: 300px;
+    flex-direction: column;
+    justify-content: flex-start;
+    display: flex;
     margin: 0 auto;
     position: relative;
     top: 70%;
-    height: 600px;
+    max-height: 600px;
     width: 65%;
-    background: aqua;
+    background: #ddd;
+    border: 10px solid #EBE201;
+}
+
+.contentConsultas .title{
+    font-family: sans-serif;
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+.boxResult{
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.cardConsulta{
+    height: 120px;
+    gap: 5px;
+    padding: 20px;
+    border: 1px solid grey;
+    border-radius: 8px;
+    width: 250px;
+    display: flex;
+}
+
+.cardConsulta:hover{
+    cursor: pointer;
+}
+
+.contentDescription{
+    justify-content: flex-end;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-family: sans-serif;
+    font-size: 16px;
+    color: #044CF6;
+    font-weight: bold;
+ 
+}
+
+.contentDescription p{
+    text-overflow: ellipsis;
+    width: auto;
+    overflow:hidden;
+}
+
+.state{
+    border-radius: 20px;
+    text-align: center;
+    padding: 10px;
+    height: 15px;
+    background:#044CF6; 
+    font-weight: normal;
+    color: #fff !important;
+}
+
+.listEmpty{
+    margin: 10% auto;
+    font-size: 18px;
+    width: 100%;
+    font-family: sans-serif;
+    text-align: center;
 }

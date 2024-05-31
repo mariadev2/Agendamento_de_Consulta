@@ -1,52 +1,49 @@
 import { isExpired } from "react-jwt";
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import maleIcon from '../../assets/man.png'
-import womanIcon from '../../assets/woman.png'
+import Skeleton from "../../components/Skeleton/skeleton";
+import NavBar from "../../components/Navbar/navbar";
+import doctorIcon from '../../assets/doctor.png'
+import { getAllConsultas } from "../../service/consultaService";
+
 import './home.css'
 
 const Home = () => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState('');
-  const [profile, setProfile] = useState('');
-  const [sexo, setSexo] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem('tokenAuth');
-    const getProfile = localStorage.getItem('profile');
-    const getUsername = localStorage.getItem('username');
-    const getSexo = localStorage.getItem('sexo');
-    if (getSexo != null) {
-      setSexo(getSexo);
-    }
-    if (getProfile != null) {
-      setProfile(getProfile);
-    }
-    if (getUsername != null) {
-      setUsername(getUsername);
-    }
     const expired = isExpired(token);
     if (expired) {
       localStorage.clear();
       navigate('/login');
     }
-}, [navigate])
+}, [navigate]);
+
+
+
+const fetchData = async () => {
+  try {
+    const token = localStorage.getItem('tokenAuth');
+    const response = await getAllConsultas(token);
+    setData(response);
+    setLoading(false);
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    setLoading(false);
+  }
+};
+useEffect(() => {
+ fetchData()
+}, []);
 
   return (
     <div style={{'height': '100vh'}} >
       <div className="sectionYellow"></div>
       <div className="containerHome"></div>
-      <div className="navBar">
-        <div className="navBarOptions">
-          {profile === 'Medico' ? <p>NOVO MEDICO</p> : null}
-          <p className="active">CONSULTAS</p>
-          <p>AGENDAR</p>
-        </div>
-        <div className="iconProfile">
-          <img src={sexo === 'Masculino' ? maleIcon : womanIcon} alt="Icon User"/>
-          <p>{username}</p>
-        </div>
-      </div>
+      <NavBar/>
       <div className="contentText">
         <span>
           <div></div>
@@ -61,7 +58,41 @@ const Home = () => {
             mesmo um exame, estamos aqui para ajudar a simplificar o processo. 
         </p>
       </div>
-      <section className="contentConsultas"></section>
+      <section className="contentConsultas">
+        <p className="title">Histórico de consultas</p>
+        <div className="boxResult">
+          {loading ?
+            (
+              <>
+                <Skeleton/>
+                <Skeleton/>
+                <Skeleton/>
+                <Skeleton/>
+                <Skeleton/>
+                <Skeleton/>
+              </>
+            ) : (
+              <>
+              { data.length > 0
+                ? data.map(e => 
+                  <div className="cardConsulta" key={e.id}>
+                    <img src={doctorIcon} alt="doctor icon"/>
+                    <div className="contentDescription">
+                      <p>{e.tipoConsulta}</p>
+                      <p>Médico SUCUM</p>
+                      <p>{e.dataAgendamento}</p>
+                      <p>Fulano</p>
+                      <p className="state">{e.estadoConsulta}</p>
+                    </div>
+                  </div>) 
+                : <div style={{'width': '100%'}}>
+                    <p className="listEmpty">Ainda não temos consultas cadastradas!</p>
+                  </div>}
+              </>
+            )
+          }
+        </div>
+      </section>
       <div className="contentHelp"></div>
     </div>
   );
