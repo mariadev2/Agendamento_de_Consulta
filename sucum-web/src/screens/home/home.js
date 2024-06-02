@@ -11,6 +11,7 @@ import './home.css'
 const Home = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const [labelError, setLabelError] = useState('');
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -20,63 +21,65 @@ const Home = () => {
       localStorage.clear();
       navigate('/login');
     }
-}, [navigate]);
+  }, [navigate]);
 
 
 
-const fetchData = async () => {
-  try {
+  const fetchData = async () => {
     const token = localStorage.getItem('tokenAuth');
     const response = await getAllConsultas(token);
-    setData(response);
-    setLoading(false);
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    setLoading(false);
+    if (response !== 'Network Error') {
+      setData(response);
+      setLoading(false);
+    } else {
+      setData([]);
+      setLabelError('Serviço indisponivel')
+      setLoading(false);
+    }
+
   }
-};
-useEffect(() => {
- fetchData()
-}, []);
+
+  useEffect(() => {
+    fetchData()
+  }, []);
 
   return (
-    <div style={{'height': '100vh'}} >
+    <div style={{ height: "100vh" }}>
       <div className="sectionYellow"></div>
       <div className="containerHome"></div>
-      <NavBar/>
+      <NavBar />
       <div className="contentText">
         <span>
           <div></div>
           <p>Sobre nós</p>
         </span>
         <h2>SUCUM</h2>
-        <p> 
-            Bem-vindo a nossa aplicação de agendamento de consultas! 
-            Com nossa plataforma, você pode facilmente marcar e gerenciar suas 
-            consultas médicas de forma rápida e conveniente. Não importa se você
-            precisa de uma consulta com um médico geral, um especialista ou até
-            mesmo um exame, estamos aqui para ajudar a simplificar o processo. 
+        <p>
+          Bem-vindo a nossa aplicação de agendamento de consultas! Com nossa
+          plataforma, você pode facilmente marcar e gerenciar suas consultas
+          médicas de forma rápida e conveniente. Não importa se você precisa de
+          uma consulta com um médico geral, um especialista ou até mesmo um
+          exame, estamos aqui para ajudar a simplificar o processo.
         </p>
       </div>
       <section className="contentConsultas">
         <p className="title">Histórico de consultas</p>
         <div className="boxResult">
-          {loading ?
-            (
-              <>
-                <Skeleton/>
-                <Skeleton/>
-                <Skeleton/>
-                <Skeleton/>
-                <Skeleton/>
-                <Skeleton/>
-              </>
-            ) : (
-              <>
-              { data.length > 0
-                ? data.map(e => 
+          {loading ? (
+            <>
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+            </>
+          ) : (
+            <>
+              {data.length > 0 ? (
+                data.map((e) => (
                   <div className="cardConsulta" key={e.id}>
-                    <img src={doctorIcon} alt="doctor icon"/>
+                    <img src={doctorIcon} alt="doctor icon" />
                     <div className="contentDescription">
                       <p>{e.tipoConsulta}</p>
                       <p>Médico SUCUM</p>
@@ -84,13 +87,21 @@ useEffect(() => {
                       <p>Fulano</p>
                       <p className="state">{e.estadoConsulta}</p>
                     </div>
-                  </div>) 
-                : <div style={{'width': '100%'}}>
-                    <p className="listEmpty">Ainda não temos consultas cadastradas!</p>
-                  </div>}
-              </>
-            )
-          }
+                  </div>
+                ))
+              ) : (
+                <div style={{ width: "100%" }}>
+                  {labelError.length > 0 ? (
+                    <p className="listEmpty">{labelError}</p>
+                  ) : (
+                    <p className="listEmpty">
+                      Ainda não temos consultas cadastradas!
+                    </p>
+                  )}
+                </div>
+              )}
+            </>
+          )}
         </div>
       </section>
       <div className="contentHelp"></div>

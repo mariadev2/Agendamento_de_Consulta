@@ -13,6 +13,6 @@ export const getAllConsultas = async (token) =>{
         const response = await axios.get(getAllConsultasUrl, config);
         return response.data.content;
       } catch (error) {
-        return error.response;
+        return error.message;
       }
 }

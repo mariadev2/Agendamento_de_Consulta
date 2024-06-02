@@ -62,7 +62,7 @@ const NavBar = () => {
         </button>
         {isVisible && (
         <div className={`containerProfile ${isVisible ? 'show' : 'hide'}`} >
-          <Link style={{'margin-top': 40}}>Conta</Link>
+          <Link style={{'marginTop': 40}}>Conta</Link>
           <Link to='/login' onClick={localStorage.clear()}>Sair</Link>
         </div>
       )}

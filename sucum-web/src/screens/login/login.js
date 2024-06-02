@@ -32,12 +32,16 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLabelError('');
         const data = {
             'username': login,
             'senha': senha
         }
         if (login != null && senha != null) {
             const result  = await loginService(data);
+            if (result === 'Network Error') {
+               return setLabelError('Serviço indisponivel')
+            }
             if (result) {
                 switch (result.status) {
                     case 200:
@@ -48,10 +52,7 @@ const Login = () => {
                             navigate('/');
                             setLabelError('')
                         break;
-                    case 401:
-                            setLabelError(result.data.message)
-                        break;
-                    case 404 || 500:
+                    case 401 || 404 || 500:
                             setLabelError("Serviço indisponivel")
                         break;
                 
@@ -59,6 +60,7 @@ const Login = () => {
                         break;
                 }
             } 
+                
         }
     };
     

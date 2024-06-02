@@ -9,7 +9,7 @@ export const loginService = async (data) =>{
         const response = await axios.post(loginUrl, data);
         return response;
       } catch (error) {
-        return error.response;
+        return error.message;
       }
 }
 

@@ -9,6 +9,7 @@ const SignUp = () => {
   const [errors, setErrors] = useState({});
   const [stateLoading, setStateLoading] = useState(false);
   const [stateRequest, setStateRequest] = useState(false);
+  const [labelError, setLabelError] = useState('');
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: '',
@@ -135,6 +136,7 @@ const SignUp = () => {
   };
 
   const handleSubmit = (e) => {
+    setLabelError('');
     e.preventDefault();
     if (validateForm()) {
       setStateLoading(true)
@@ -147,11 +149,11 @@ const SignUp = () => {
         }, 2);
       }else{
         setStateLoading(false)
-        alert(e.data.message)
+        setLabelError(e.data.message)
       }
     }).catch((e)=>{
       setStateLoading(false)
-      alert('Erro no cadastro, tente novamente mais tarde')
+      setLabelError('Erro no cadastro, tente novamente mais tarde')
     })
     }
   };
@@ -181,110 +183,325 @@ const SignUp = () => {
   
 
   return (
-    <div className='signUpContainer'>
-      <div className='containerForm'>
-        <div style={{padding: 40, height: "90%"}}>
+    <div className="signUpContainer">
+      <div className="containerForm">
+        <div style={{ padding: 40, height: "90%" }}>
           <h2>Vamos iniciar o cadastro</h2>
           <h3>Seja bem vindo paciente</h3>
           <form id="registrationForm" onSubmit={handleSubmit}>
             <div>
-                <input type="text" id="name" name="username" placeholder='Nome completo' value={formData.username} onChange={handleChange} required />
+              <input
+                type="text"
+                id="name"
+                name="username"
+                placeholder="Nome completo"
+                value={formData.username}
+                onChange={handleChange}
+                required
+              />
             </div>
-            <div className='cpfContainer'>
+            <div className="cpfContainer">
               <section>
-                {errors.cpf && <p className='labelError'>{errors.cpf}</p>}
+                {errors.cpf && <p className="labelError">{errors.cpf}</p>}
                 <span>
-                  <InputMask mask="999.999.999-99" type="text" id="cpf" name="cpf" onChange={handleChange} value={formData.cpf} placeholder='CPF' title="CPF deve conter 11 dígitos numéricos" required />
-                  <input type="date" id="dataNascimento" name="dataNascimento" value={formData.dataNascimento} onChange={handleChange} placeholder='Data de Nascimento' />
+                  <InputMask
+                    mask="999.999.999-99"
+                    type="text"
+                    id="cpf"
+                    name="cpf"
+                    onChange={handleChange}
+                    value={formData.cpf}
+                    placeholder="CPF"
+                    title="CPF deve conter 11 dígitos numéricos"
+                    required
+                  />
+                  <input
+                    type="date"
+                    id="dataNascimento"
+                    name="dataNascimento"
+                    value={formData.dataNascimento}
+                    onChange={handleChange}
+                    placeholder="Data de Nascimento"
+                  />
                 </span>
               </section>
             </div>
-            <div className='senhaContainer'>
+            <div className="senhaContainer">
               <section>
-                {errors.confirmSenha && <p className='labelError'>{errors.confirmSenha}</p>}
+                {errors.confirmSenha && (
+                  <p className="labelError">{errors.confirmSenha}</p>
+                )}
                 <span>
-                  <input type="password" id="password" minLength='8' title='Insira no mínimo 8 caracteres' name="senha" value={formData.senha} onChange={handleChange} placeholder='Senha' required/>
-                  <input type="password" id="confirmSenha" title='Insira no mínimo 8 caracteres' minLength='8' value={formData.confirmSenha} onChange={handleChange} name="confirmSenha" placeholder='Confirme sua Senha' required/>
-                  <div className='contentSexo'>
-                    <div style={{'alignItems': 'center'}}>
-                      <label htmlFor='masculino' style={{'color': '#fff','fontFamily':'sans-serif', 'fontWeight':'bold'}}>Masculino:</label>
-                      <input type="checkbox" value={formData.sexo} style={{'margin':'unset', 'padding':'unset'}} id="masculino" name="sexo" onChange={handlecheckboxChange} />
+                  <input
+                    type="password"
+                    id="password"
+                    minLength="8"
+                    title="Insira no mínimo 8 caracteres"
+                    name="senha"
+                    value={formData.senha}
+                    onChange={handleChange}
+                    placeholder="Senha"
+                    required
+                  />
+                  <input
+                    type="password"
+                    id="confirmSenha"
+                    title="Insira no mínimo 8 caracteres"
+                    minLength="8"
+                    value={formData.confirmSenha}
+                    onChange={handleChange}
+                    name="confirmSenha"
+                    placeholder="Confirme sua Senha"
+                    required
+                  />
+                  <div className="contentSexo">
+                    <div style={{ alignItems: "center" }}>
+                      <label
+                        htmlFor="masculino"
+                        style={{
+                          color: "#fff",
+                          fontFamily: "sans-serif",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        Masculino:
+                      </label>
+                      <input
+                        type="checkbox"
+                        value={formData.sexo}
+                        style={{ margin: "unset", padding: "unset" }}
+                        id="masculino"
+                        name="sexo"
+                        onChange={handlecheckboxChange}
+                      />
                     </div>
-                    <div style={{'alignItems': 'center'}}>
-                      <label htmlFor='feminino' style={{'color': '#fff','fontFamily':'sans-serif', 'fontWeight':'bold'}}>Feminino:</label>
-                      <input type="checkbox" value={formData.sexo} style={{'margin':'unset', 'padding':'unset'}} id="feminino" name="sexo" onChange={handlecheckboxChange} />
+                    <div style={{ alignItems: "center" }}>
+                      <label
+                        htmlFor="feminino"
+                        style={{
+                          color: "#fff",
+                          fontFamily: "sans-serif",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        Feminino:
+                      </label>
+                      <input
+                        type="checkbox"
+                        value={formData.sexo}
+                        style={{ margin: "unset", padding: "unset" }}
+                        id="feminino"
+                        name="sexo"
+                        onChange={handlecheckboxChange}
+                      />
                     </div>
                   </div>
                 </span>
               </section>
             </div>
-            <div className='contentCep'>
-                <input type="text" id="cep" name="cep" value={formData.cep}  onChange={handleChange} placeholder='CEP' required/>
-                <input type="text" id="endereco" name="endereco" value={formData.endereco}  onChange={handleChange} placeholder='Endereço' required/>
-                <input type="text" id="numeroCasa" name="numeroCasa" value={formData.numeroCasa}  onChange={handleChange} placeholder='N°' required/>
+            <div className="contentCep">
+              <input
+                type="text"
+                id="cep"
+                name="cep"
+                value={formData.cep}
+                onChange={handleChange}
+                placeholder="CEP"
+                required
+              />
+              <input
+                type="text"
+                id="endereco"
+                name="endereco"
+                value={formData.endereco}
+                onChange={handleChange}
+                placeholder="Endereço"
+                required
+              />
+              <input
+                type="text"
+                id="numeroCasa"
+                name="numeroCasa"
+                value={formData.numeroCasa}
+                onChange={handleChange}
+                placeholder="N°"
+                required
+              />
             </div>
-            <div className='contentEmail'>
-                <input type="text" id="bairro" name="bairro"  className={errors.email != null ? 'inputErrorCustom' : ''} value={formData.bairro} onChange={handleChange} placeholder='Bairro' required/>
-                <input type="text" id="cidade" className={errors.email != null ? 'inputErrorCustom' : ''} name="cidade" value={formData.cidade} onChange={handleChange} placeholder='Cidade' required/>
-                <span>
-                {errors.email && <p className='labelError'>{errors.email}</p>}
-                <input type="email" id="email" className='email' name="email" value={formData.email} onChange={handleChange} placeholder='E-mail' />
-                </span>
-              
+            <div className="contentEmail">
+              <input
+                type="text"
+                id="bairro"
+                name="bairro"
+                className={errors.email != null ? "inputErrorCustom" : ""}
+                value={formData.bairro}
+                onChange={handleChange}
+                placeholder="Bairro"
+                required
+              />
+              <input
+                type="text"
+                id="cidade"
+                className={errors.email != null ? "inputErrorCustom" : ""}
+                name="cidade"
+                value={formData.cidade}
+                onChange={handleChange}
+                placeholder="Cidade"
+                required
+              />
+              <span>
+                {errors.email && <p className="labelError">{errors.email}</p>}
+                <input
+                  type="email"
+                  id="email"
+                  className="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="E-mail"
+                />
+              </span>
             </div>
             <div>
-              <InputMask mask="(99) 9999-9999" type="text" id="telefone" value={formData.telefone} name="telefone" onChange={handleChange} placeholder='Telefone' required/>
-              <InputMask mask="(99) 99999-9999" type="text" id="celular" name="celular" value={formData.celular} onChange={handleChange} placeholder='Celular' required/>
+              <InputMask
+                mask="(99) 9999-9999"
+                type="text"
+                id="telefone"
+                value={formData.telefone}
+                name="telefone"
+                onChange={handleChange}
+                placeholder="Telefone"
+                required
+              />
+              <InputMask
+                mask="(99) 99999-9999"
+                type="text"
+                id="celular"
+                name="celular"
+                value={formData.celular}
+                onChange={handleChange}
+                placeholder="Celular"
+                required
+              />
             </div>
-            <div className='containerQuestionario'>
+            <div className="containerQuestionario">
               <h2>Questionário: </h2>
-              <div className='contentQuestionario'>
+              <div className="contentQuestionario">
                 <p>Possui algum problema de saúde?</p>
-                <div className='contentBoxs'>
+                <div className="contentBoxs">
                   <div>
-                    <label htmlFor='sim1'>Sim</label>
-                    <input type="checkbox" id="sim1" name="sim" onChange={handlecheckboxChange} />
+                    <label htmlFor="sim1">Sim</label>
+                    <input
+                      type="checkbox"
+                      id="sim1"
+                      name="sim"
+                      onChange={handlecheckboxChange}
+                    />
                   </div>
                   <div>
-                    <label htmlFor='nao1'>Não</label>
-                    <input type="checkbox" id="nao1" name="nao" onChange={handlecheckboxChange} required/>
+                    <label htmlFor="nao1">Não</label>
+                    <input
+                      type="checkbox"
+                      id="nao1"
+                      name="nao"
+                      onChange={handlecheckboxChange}
+                      required
+                    />
                   </div>
                 </div>
-                <input type="text" id="resposta1" name="problemaSaude" value={formData.problemaSaude} onChange={handleChange} placeholder='Se sim, qual?' disabled required/>
+                <input
+                  type="text"
+                  id="resposta1"
+                  name="problemaSaude"
+                  value={formData.problemaSaude}
+                  onChange={handleChange}
+                  placeholder="Se sim, qual?"
+                  disabled
+                  required
+                />
               </div>
-              <div className='contentQuestionario'>
+              <div className="contentQuestionario">
                 <p>Faz uso de algum medicamento?</p>
-                <div className='contentBoxs'>
+                <div className="contentBoxs">
                   <div>
-                    <label htmlFor='sim2'>Sim</label>
-                    <input type="checkbox" id="sim2" name="sim" onChange={handlecheckboxChange} />
+                    <label htmlFor="sim2">Sim</label>
+                    <input
+                      type="checkbox"
+                      id="sim2"
+                      name="sim"
+                      onChange={handlecheckboxChange}
+                    />
                   </div>
                   <div>
-                    <label htmlFor='nao2'>Não</label>
-                    <input type="checkbox" id="nao2" name="nao" onChange={handlecheckboxChange} required/>
+                    <label htmlFor="nao2">Não</label>
+                    <input
+                      type="checkbox"
+                      id="nao2"
+                      name="nao"
+                      onChange={handlecheckboxChange}
+                      required
+                    />
                   </div>
                 </div>
-                <input type="text" id="resposta2" name="usoMedicamento" value={formData.usoMedicamento} onChange={handleChange} placeholder='Se sim, qual?' disabled required/>
+                <input
+                  type="text"
+                  id="resposta2"
+                  name="usoMedicamento"
+                  value={formData.usoMedicamento}
+                  onChange={handleChange}
+                  placeholder="Se sim, qual?"
+                  disabled
+                  required
+                />
               </div>
-              <div className='contentQuestionario'>
+              <div className="contentQuestionario">
                 <p>Possui alergia?</p>
-                <div className='contentBoxs'>
+                <div className="contentBoxs">
                   <div>
-                    <label htmlFor='sim3'>Sim</label>
-                    <input type="checkbox" id="sim3" name="sim" onChange={handlecheckboxChange} />
+                    <label htmlFor="sim3">Sim</label>
+                    <input
+                      type="checkbox"
+                      id="sim3"
+                      name="sim"
+                      onChange={handlecheckboxChange}
+                    />
                   </div>
                   <div>
-                    <label htmlFor='nao3'>Não</label>
-                    <input type="checkbox" id="nao3" name="nao" onChange={handlecheckboxChange} required/>
+                    <label htmlFor="nao3">Não</label>
+                    <input
+                      type="checkbox"
+                      id="nao3"
+                      name="nao"
+                      onChange={handlecheckboxChange}
+                      required
+                    />
                   </div>
                 </div>
-                <input type="text" id="resposta3" name="alergia" value={formData.alergia} onChange={handleChange} placeholder='Se sim, qual?' disabled required/>
+                <input
+                  type="text"
+                  id="resposta3"
+                  name="alergia"
+                  value={formData.alergia}
+                  onChange={handleChange}
+                  placeholder="Se sim, qual?"
+                  disabled
+                  required
+                />
               </div>
             </div>
             <button type="submit">Cadastrar</button>
-            {stateLoading === true ? <Loading/> : <div></div>}
-            {stateRequest === true ? <h3 style={{'margin': '0 auto'}}>Cadastrado com sucesso</h3>: <div></div>}
+            {stateLoading === true ? <Loading /> : <div></div>}
+            {stateRequest === true ? (
+              <h3 style={{ margin: "0 auto" }}>Cadastrado com sucesso</h3>
+            ) : (
+              <div></div>
+            )}
           </form>
+          {labelError.length > 0 ? (
+          <p style={{'textAlign': 'center', 'color': 'red'}}>{labelError}</p>
+        ) : (
+          <></>
+        )}
         </div>
         
       </div>
