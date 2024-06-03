@@ -219,6 +219,7 @@ const SignUp = () => {
                     type="date"
                     id="dataNascimento"
                     name="dataNascimento"
+                    required
                     value={formData.dataNascimento}
                     onChange={handleChange}
                     placeholder="Data de Nascimento"

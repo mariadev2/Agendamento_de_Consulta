@@ -51,8 +51,8 @@ const Home = () => {
         if (response.data[0].isActive === true) {
           setLoading(false);
         }else{
-          navigate('/login')
-          alert('Verificamos que você nao completou o seu cadastro, por favor, preencha os campos')
+          navigate('/signUpMed')
+          alert('Verificamos que você nao completou o seu cadastro, por favor, preencha os campos!')
         }
       } else {
         setData([]);
@@ -63,8 +63,9 @@ const Home = () => {
   }
 
   useEffect(() => {
-    checkMedicoInfos()
     fetchData()
+    checkMedicoInfos()
+    // eslint-disable-next-line
   }, []);
 
   return (

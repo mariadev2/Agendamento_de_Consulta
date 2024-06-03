@@ -156,17 +156,13 @@ function returnNewMedico(data) {
     const getDate = new Date().toISOString();
     const medico = new Medico({
         id: data.id ?? null,
-        username: data.username ?? null, 
-        senha: data.senha ?? null, 
         bairro: data.bairro ?? null, 
         celular: data.celular ?? null, 
         cidade: data.cidade ?? null, 
-        cpf: data.cpf ?? null, 
         dataNascimento: data.dataNascimento ?? null, 
         email: data.email ?? null, 
         numeroCasa: data.numeroCasa ?? null, 
         cep: data.cep ?? null,
-        crm: data.crm ?? null,
         especializacao: data.especializacao ?? null,
         genero: data.genero,
         createTime: getDate
