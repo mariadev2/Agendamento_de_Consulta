@@ -78,11 +78,11 @@ export function queryCreateQuestionarioTable(){
         )`
 }
 
-export function checkUserExistLogin(username) {
-    return `SELECT id, username, senha, cpf, sexo, perfil FROM medico WHERE username = '${username}' OR cpf = '${username}'
+export function checkUserExistLogin(data) {
+    return `SELECT id, username, senha, cpf, sexo, perfil FROM medico WHERE username = '${data}' OR cpf = '${data}'
             UNION
-            SELECT id, username, senha, cpf, sexo, perfil FROM paciente WHERE username = '${username}' OR cpf = '${username}'
+            SELECT id, username, senha, cpf, sexo, perfil FROM paciente WHERE username = '${data}' OR cpf = '${data}'
             UNION
-            SELECT id, username, senha, cpf, sexo, perfil FROM supervisor WHERE username = '${username}' OR cpf = '${username}'
+            SELECT id, username, senha, cpf, sexo, perfil FROM supervisor WHERE username = '${data}' OR cpf = '${data}'
             `
 }

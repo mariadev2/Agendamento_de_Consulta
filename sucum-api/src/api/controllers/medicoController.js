@@ -45,15 +45,16 @@ export default () => {
         const preMedicoNew = returnNewPreMedico(req.body)
           
         const querySaveAccount = createSqlInsertPreMedico(preMedicoNew)
-        const queryCheckExist = checkUserExistMedico(preMedicoNew)
+        const queryCheckExist = checkUserExistMedico(preMedicoNew.username)
      
         getInstanceDB.query(queryCheckExist, (err, data)=>{
             if (err) res.status(500).json({messageError: 'Registration failed: ' + err.sqlMessage});
-
+           
             if (data[0].count > 0 ) {
-                return res.status(200).json({message: "Já existe um Medico com esse nome"});
+                return res.status(400).json({message: "Já existe um Medico com esse nome"});
             }else{
                 getInstanceDB.query(querySaveAccount, (err, data)=>{
+                    console.log(err);
                     if (err) res.status(500).json({messageError: 'Registration failed' + err.sqlMessage});
                     return res.status(200).json({message: "Salvo com sucesso"});
                 })
@@ -179,7 +180,9 @@ function returnNewPreMedico(data) {
     const preMedico = new PreMedico({
         username: data.username ?? null, 
         senha: data.senha ?? null, 
-        email: data.email ?? null, 
+        crm: data.crm ?? null, 
+        cpf: data.cpf ?? null,
+        isActive: 'false',
         createTime: getDate
     });
 

@@ -5,11 +5,16 @@ import Home from "../screens/home/home";
 
 import {ProtectedRoute} from "./ProtectedRoute";
 import SignUp from "../screens/signUp/signUp";
+import PreSignUpMed from "../screens/preSignUpMed/preSignUpMed";
 
 export default  createBrowserRouter([
     {
       path: "/",
       element: <ProtectedRoute><Home/></ProtectedRoute>,
+    },
+    {
+      path: "/preSignUpMed",
+      element: <ProtectedRoute><PreSignUpMed/></ProtectedRoute>,
     },
     {
       path: "/login",

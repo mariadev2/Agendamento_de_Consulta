@@ -49,6 +49,7 @@ const Login = () => {
                             localStorage.setItem('profile', result.data.perfil)
                             localStorage.setItem('username', result.data.username)
                             localStorage.setItem('sexo', result.data.sexo)
+                            localStorage.setItem('id', result.data.id)
                             navigate('/');
                             setLabelError('')
                         break;

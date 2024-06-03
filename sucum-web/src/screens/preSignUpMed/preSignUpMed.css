@@ -1,0 +1,150 @@
+.signUpContainer{
+    width: 100%;
+    filter: drop-shadow(5px 5px 5px #222);
+    height: 100vh;
+    background-image: url('../../assets/background-login.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.containerForm.preSignUp{
+    height: 500px;
+    opacity: .6;
+    border-radius: 10px;
+    width: 80%;
+    background: #044CF6;
+    margin: 50px;
+}
+
+.containerForm h2{
+    font-size: 30px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
+}
+
+.containerForm h3{
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
+}
+.containerForm.preSignUp form button{
+    margin-top: 90px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: sans-serif;
+    background-color: #EBE201;
+    width: 80px;
+    padding: 10px;
+    border-radius: 15px;
+    border: none;
+}
+
+.containerForm.preSignUp span{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.containerForm.preSignUp .loading-container{
+    height: unset;
+}
+ 
+.containerForm.preSignUp form{
+    margin-top: 45px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 700px;
+    overflow: hidden;
+}
+
+.containerForm form div{
+    display: flex;
+    gap: 20px;
+}
+
+.containerForm form .senhaContainer section, .containerForm form .crmContainer section{
+    animation: ease-in-out;
+    transition: all 1s;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.containerForm form .senhaContainer span, .containerForm form .crmContainer span{
+    animation: ease-in-out;
+    transition: all 1s;
+    display: flex;
+    gap: 20px;
+}
+
+.containerForm form .contentEmail .inputErrorCustom{
+    animation: ease-in-out;
+    transition: all 1s;
+    margin-top: 28px;
+    height: .7rem;
+}
+
+.signUpContainer input {
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    text-align: center;
+    font-weight: 700;
+    padding: .7rem;
+}
+.containerForm form #name{
+    width: 40%;
+    max-width: 40%;
+}
+
+.containerForm form #crm, .containerForm form #password, .containerForm form #confirmSenha{
+    width: 300px;
+}
+
+.labelError{
+    animation: ease-in-out;
+    transition: all 1s;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: red;
+    margin-bottom: 5px;
+}
+
+
+@media only screen and (max-width: 600px) {
+
+    .containerForm form{
+        overflow-y: scroll;
+        scrollbar-color: #fff transparent;
+        scrollbar-width: thin;
+    }
+    .containerForm form #name{
+        width: unset;
+        max-width: unset;
+    }
+
+    .containerForm form .senhaContainer span{
+        flex-direction: column;
+    }
+
+    .containerForm form .senhaContainer .contentSexo{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .containerForm form div{
+        flex-direction: column;
+        margin-right: 10px;
+        gap: 10px;
+    }
+   
+    
+}

@@ -41,7 +41,5 @@ export const signUpService = async (data) =>{
   } catch (error) {
     return error.response;
   }
-
-  
 }
     

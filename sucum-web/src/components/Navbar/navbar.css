@@ -48,16 +48,18 @@
     margin: 0 auto;
 }
 
-.navBarOptions p{
+.navBarOptions a{
     font-weight: 600;
     text-align: left;
     font-family: sans-serif;
     font-size: 18px;
     color: grey;
+    text-decoration: none;
 }
 
 .iconProfile p{
     margin-left: 5px;
+    text-wrap: nowrap;
     font-size: 15px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -92,6 +94,6 @@
     text-decoration: none;
 }
 
-.navBarOptions p.active{
+.navBarOptions a.active{
     color: #044CF6;
 }

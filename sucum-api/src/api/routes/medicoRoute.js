@@ -22,7 +22,7 @@ export default app  => {
  *                   type: string
  *                senha:
  *                   type: string
- *                email:
+ *                crm:
  *                   type: string
  *     responses:
  *       200:

@@ -7,6 +7,7 @@ import doctorIcon from '../../assets/doctor.png'
 import { getAllConsultas } from "../../service/consultaService";
 
 import './home.css'
+import { getMedicoById } from "../../service/preSignUpMedico";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -39,7 +40,30 @@ const Home = () => {
 
   }
 
+  const checkMedicoInfos = async () => {
+    const profile = localStorage.getItem('profile');
+    const token = localStorage.getItem('tokenAuth');
+    const id = localStorage.getItem('id');
+    if (profile === "Medico") {
+      const response = await getMedicoById(id, token);
+      if (response !== "Network Error") {
+        console.log(response.data[0].isActive);
+        if (response.data[0].isActive === true) {
+          setLoading(false);
+        }else{
+          navigate('/login')
+          alert('Verificamos que você nao completou o seu cadastro, por favor, preencha os campos')
+        }
+      } else {
+        setData([]);
+        setLabelError("Serviço indisponivel");
+        setLoading(false);
+      }
+    }
+  }
+
   useEffect(() => {
+    checkMedicoInfos()
     fetchData()
   }, []);
 
@@ -47,7 +71,7 @@ const Home = () => {
     <div style={{ height: "100vh" }}>
       <div className="sectionYellow"></div>
       <div className="containerHome"></div>
-      <NavBar />
+      <NavBar isConsulta={true} isAgendarConsulta={false} isPreCad={false}/>
       <div className="contentText">
         <span>
           <div></div>

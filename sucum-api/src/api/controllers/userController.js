@@ -23,12 +23,11 @@ export default () => {
 
             getInstanceDB.query(queryLogin, (err, data)=>{
                 if (err) res.status(500).json({messageError: 'Error sql: ' + err.sqlMessage});
-                
+              
                 const result = Object.values(JSON.parse(JSON.stringify(data)));
                 if (result.length > 0) {
                     result.forEach(element => {
                         if ((element.username === username || element.cpf === username ) && element.senha === senha) {
-                            console.log(element);
                             const token = jwt.sign({ userId: element.id}, secretKey, {
                                 expiresIn: '1h',
                             });

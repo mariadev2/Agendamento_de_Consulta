@@ -5,7 +5,7 @@ import maleIcon from '../../assets/man.png'
 import womanIcon from '../../assets/woman.png'
 import logo from '../../assets/logo.jpg'
 
-const NavBar = () => {
+const NavBar = ({isConsulta, isPreCad, isAgendarConsulta}) => {
     const [username, setUsername] = useState('');
     const [profile, setProfile] = useState('');
     const [isVisible, setIsVisible] = useState(false);
@@ -49,24 +49,33 @@ const NavBar = () => {
         };
       }, []);
   return (
-    <div className={`navBar ${scrolled ? 'scrolled': ''}`}>
-        <img className="logo" src={logo} alt="logo"/>
-        <div className="navBarOptions">
-          {profile === 'Medico' ? <p>NOVO MEDICO</p> : null}
-          <p className="active">CONSULTAS</p>
-          {profile === 'Paciente' ? <p>AGENDAR</p> : null}
-        </div>
-        <button className="iconProfile" onClick={toggleVisibility}>
-          <img src={sexo === 'Masculino' ? maleIcon : womanIcon} alt="Icon User"/>
-          <p>{username}</p>
-        </button>
-        {isVisible && (
-        <div className={`containerProfile ${isVisible ? 'show' : 'hide'}`} >
-          <Link style={{'marginTop': 40}}>Conta</Link>
-          <Link to='/login' onClick={localStorage.clear()}>Sair</Link>
+    <div className={`navBar ${scrolled ? "scrolled" : ""}`}>
+      <img className="logo" src={logo} alt="logo" />
+      <div className="navBarOptions">
+        {profile === "Supervisor" ? (
+          <Link to="/preSignUpMed" className={isPreCad ? 'active': ''}>NOVO MÉDICO</Link>
+        ) : null}
+        <Link to="/" className={isConsulta ? 'active': ''}>
+          CONSULTAS
+        </Link >
+        {profile === "Paciente" ? <p>AGENDAR</p> : null}
+      </div>
+      <button className="iconProfile" onClick={toggleVisibility}>
+        <img
+          src={sexo === "Masculino" ? maleIcon : womanIcon}
+          alt="Icon User"
+        />
+        <p>{username}</p>
+      </button>
+      {isVisible && (
+        <div className={`containerProfile ${isVisible ? "show" : "hide"}`}>
+          <Link style={{ marginTop: 40 }}>Conta</Link>
+          <Link to="/login" onClick={localStorage.clear()}>
+            Sair
+          </Link>
         </div>
       )}
-      </div>
+    </div>
   );
 };
 
