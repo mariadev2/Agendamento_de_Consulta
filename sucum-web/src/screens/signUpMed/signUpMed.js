@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import InputMask from 'react-input-mask';
 import { useNavigate } from "react-router-dom";
 import './signUpMed.css';
-import { signUpService } from '../../service/userService';
 import Loading from '../../components/Loading/loading';
+import { signUpMedService } from '../../service/signUpMed';
 
 const SignUpMed = () => {
   const [errors, setErrors] = useState({});
@@ -23,13 +23,14 @@ const SignUpMed = () => {
     email: '',
     telefone: '',
     celular: '',
+    especializacao: '',
   });
   
 
   const validateForm = () => {
     let formErrors = {};
-    if (formData.cpf.length < 11) formErrors.cpf = 'CPF deve conter 11 dígitos numéricos.';
-    if (formData.senha !== formData.confirmSenha) formErrors.confirmSenha = 'Senhas não conferem.';
+    if (formData.sexo.length === 0) formErrors.sexo = 'Selecione uma opção'
+    if(formData.especializacao.length === 0) formErrors.especializacao = 'Selecione uma especialização'
     if (!validateEmail(formData.email)) formErrors.email = 'E-mail inválido.'
 
     setErrors(formErrors);
@@ -91,16 +92,18 @@ const SignUpMed = () => {
 
   const handleSubmit = (e) => {
     setLabelError('');
+    const id = localStorage.getItem('id');
+    const token = localStorage.getItem('tokenAuth');
     e.preventDefault();
     if (validateForm()) {
       setStateLoading(true)
-    signUpService(formData).then((e)=>{
+    signUpMedService(formData, id, token).then((e)=>{
       if (e.status === 200) {
         setStateLoading(false)
         setStateRequest(true)
         setTimeout(() => {
-          navigate('/login');
-        }, 2);
+          navigate('/');
+        }, 2000);
       }else{
         setStateLoading(false)
         setLabelError(e.data.message)
@@ -124,6 +127,7 @@ const SignUpMed = () => {
       email: '',
       telefone: '',
       celular: '',
+      especializacao: '',
     })
   }, [navigate])
   
@@ -136,18 +140,22 @@ const SignUpMed = () => {
           <h3>Seja bem vindo paciente</h3>
           <form id="registrationForm" onSubmit={handleSubmit}>
             <div>
-              <input
-                type="text"
-                id="email"
-                name="email"
-                placeholder="E-mail"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-              <section style={{'display': 'flex', 'alignItems': 'center'}}>
-                {errors.confirmSenha && (
-                  <p className="labelError">{errors.confirmSenha}</p>
+            <span style={{'width': '50%'}}>
+                {errors.email && <p className="labelError">{errors.email}</p>}
+                <input
+                  type="email"
+                  id="email"
+                  className="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="E-mail"
+                  required
+                />
+              </span>
+              <section style={{'display': 'flex', 'alignItems': 'center', 'marginLeft': '15px', 'position': 'relative', 'flexDirection': 'column', 'justifyContent': 'center'}}>
+              {errors.sexo && (
+                  <p className="labelError" style={{'position': 'relative', 'left': '-70px'}}>{errors.sexo}</p>
                 )}
                 <span>
                   <div className="contentSexo">
@@ -193,6 +201,7 @@ const SignUpMed = () => {
                     </div>
                   </div>
                 </span>
+               
               </section>
             </div>
             <div className="cpfContainer">
@@ -286,17 +295,29 @@ const SignUpMed = () => {
                 placeholder="Cidade"
                 required
               />
-             
+              <select id="consulta" name="especializacao" onChange={handleChange} required>
+                <option name="especializacao" value="" defaultChecked>Selecione a especialidade</option>
+                <option name="especializacao" value="Consulta Geral">Consulta Geral</option>
+                <option name="especializacao" value="Cardiologia">Cardiologia</option>
+                <option name="especializacao" value="Dermatologia">Dermatologia</option>
+                <option name="especializacao" value="Pediatria">Pediatria</option>
+                <option name="especializacao" value="Ginecologia">Ginecologia</option>
+                <option name="especializacao" value="Oftalmologia">Oftalmologia</option>
+                <option name="especializacao" value="Ortopedia">Ortopedia</option>
+                <option name="especializacao" value="Psiquiatria">Psiquiatria</option>
+                <option name="especializacao" value="Neurologia">Neurologia</option>
+                <option name="especializacao" value="Urologia">Urologia</option>
+              </select>
             </div>
             
             
             <button type="submit">Cadastrar</button>
             {stateLoading === true ? <Loading /> : <div></div>}
-            {stateRequest === true ? (
+            {stateRequest === true ? 
               <h3 style={{ margin: "0 auto" }}>Cadastrado com sucesso</h3>
-            ) : (
-              <div></div>
-            )}
+             : 
+              <></>
+            }
           </form>
           {labelError.length > 0 ? (
           <p style={{'textAlign': 'center', 'color': 'red'}}>{labelError}</p>

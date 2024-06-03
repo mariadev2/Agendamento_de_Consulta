@@ -10,17 +10,16 @@ export function checkUserExistMedico(username){
 
 export function queryUpdateMedico(dados){
     return `UPDATE medico
-            SET username = "${dados.username}",
-                senha = "${dados.senha}",
-                email = "${dados.email}",
+            SET email = "${dados.email}",
                 dataNascimento = "${dados.dataNascimento}",
                 celular = "${dados.celular}",
                 cep = "${dados.cep}",
                 numeroCasa = "${dados.numeroCasa}",
                 bairro = "${dados.bairro}",
-                genero = "${dados.genero},
+                sexo = "${dados.sexo}",
                 cidade = "${dados.cidade}",
-                especializacao = "${dados.especializacao}"
+                especializacao = "${dados.especializacao}",
+                isActive = "${dados.isActive}"
             WHERE id = ${dados.id};`;
 }
 

@@ -54,7 +54,6 @@ export default () => {
                 return res.status(400).json({message: "Já existe um Medico com esse nome"});
             }else{
                 getInstanceDB.query(querySaveAccount, (err, data)=>{
-                    console.log(err);
                     if (err) res.status(500).json({messageError: 'Registration failed' + err.sqlMessage});
                     return res.status(200).json({message: "Salvo com sucesso"});
                 })
@@ -164,7 +163,8 @@ function returnNewMedico(data) {
         numeroCasa: data.numeroCasa ?? null, 
         cep: data.cep ?? null,
         especializacao: data.especializacao ?? null,
-        genero: data.genero,
+        sexo: data.sexo,
+        isActive: 'true',
         createTime: getDate
     });
 

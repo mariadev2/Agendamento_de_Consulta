@@ -46,13 +46,13 @@ const Home = () => {
     const id = localStorage.getItem('id');
     if (profile === "Medico") {
       const response = await getMedicoById(id, token);
+      console.log(response.data[0]);
       if (response !== "Network Error") {
-        console.log(response.data[0].isActive);
-        if (response.data[0].isActive === true) {
+        if (response.data[0].isActive === "true") {
           setLoading(false);
         }else{
           navigate('/signUpMed')
-          alert('Verificamos que você nao completou o seu cadastro, por favor, preencha os campos!')
+          alert('Verificamos que você nao completou o seu cadastro, por favor, preencha o formulário!')
         }
       } else {
         setData([]);
@@ -63,8 +63,12 @@ const Home = () => {
   }
 
   useEffect(() => {
-    fetchData()
     checkMedicoInfos()
+    // eslint-disable-next-line
+  }, []);
+
+  useEffect(() => {
+    fetchData()
     // eslint-disable-next-line
   }, []);
 

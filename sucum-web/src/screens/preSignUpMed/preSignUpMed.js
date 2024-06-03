@@ -48,13 +48,13 @@ const PreSignUpMed = () => {
     e.preventDefault();
      if (validateForm()) {
        setStateLoading(true)
-    preSignUpService(formData).then((e)=>{
+    preSignUpService(formData, ).then((e)=>{
       if (e.status === 200) {
         setStateLoading(false)
         setStateRequest(true)
         setTimeout(() => {
           navigate('/');
-        }, 5000);
+        }, 2000);
       }else{
         setStateLoading(false)
         setLabelError(e.data.message ?? 'Erro servidor')

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const baseUrl = 'http://localhost:8080/api/v1'
-const preSignUpPacienteUrl = baseUrl + '/preSignUpMedico'
+const preSignUpMedicoUrl = baseUrl + '/preSignUpMedico'
 const getMedicoByIdUrl = baseUrl + '/getMedicoById'
 
 export const preSignUpService = async (data) =>{
@@ -13,7 +13,7 @@ export const preSignUpService = async (data) =>{
     };
   
     try {
-      const response = await axios.post(preSignUpPacienteUrl, createBody);
+      const response = await axios.post(preSignUpMedicoUrl, createBody);
       return response;
     } catch (error) {
       return error.response;

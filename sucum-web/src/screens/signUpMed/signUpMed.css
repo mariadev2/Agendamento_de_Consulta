@@ -37,11 +37,15 @@
     cursor: pointer;
     font-family: sans-serif;
     background-color: #EBE201;
-    margin: 0 auto;
+    margin: 50px auto;
     width: 80px;
     padding: 10px;
     border-radius: 15px;
     border: none;
+}
+
+.containerForm.Med .loading-container{
+    height: unset;
 }
  
 .containerForm form{
@@ -89,7 +93,7 @@
     animation: ease-in-out;
     transition: all 1s;
     flex-direction: column;
-    width: 60%;
+    width: 50%;
 }
 
 .signUpContainer input {
@@ -109,7 +113,7 @@
 }
 
 .containerForm form #endereco, .containerForm form #email{
-    width: 60%;
+    width: 100%;
 }
 
 .contentCep, .contentEmail{
@@ -118,6 +122,23 @@
 
 .contentEmail #cidade{
     width: 15%;
+}
+
+.containerForm #consulta{
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    text-align: center;
+    font-weight: 700;
+    padding: .7rem;
+}
+
+.containerForm #consulta:focus-visible{
+    outline: none;
+}
+
+.containerForm #consulta:not:-internal-list-box{
+    outline: none;
+    border: 1px solid red;
 }
 
 .containerForm form input{
@@ -137,15 +158,6 @@
     gap: 10px !important;
 }
 
-.contentQuestionario #resposta3, .contentQuestionario #resposta2, .contentQuestionario #resposta1{
-    width: 400px;
-}
-
-.containerQuestionario{
-    margin-top: 30px;
-    flex-direction: column;
-    margin-bottom: 30px;
-}
 
 .labelError{
     animation: ease-in-out;
@@ -154,7 +166,9 @@
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     color: red;
-    margin-bottom: 5px;
+    margin-bottom: unset;
+    margin-left: 10px;
+    margin-top: unset;
 }
 
 
