@@ -15,6 +15,7 @@ const NavBar = ({isConsulta, isPreCad, isAgendarConsulta}) => {
     const toggleVisibility = () => {
         setIsVisible(!isVisible);
       };
+   
       
     useEffect(() => {
         const getProfile = localStorage.getItem('profile');
@@ -40,7 +41,6 @@ const NavBar = ({isConsulta, isPreCad, isAgendarConsulta}) => {
             setScrolled(false);
           }
         };
-    
         window.addEventListener('scroll', handleScroll);
         
         // Limpar o evento de rolagem ao desmontar o componente
@@ -58,7 +58,7 @@ const NavBar = ({isConsulta, isPreCad, isAgendarConsulta}) => {
         <Link to="/" className={isConsulta ? 'active': ''}>
           CONSULTAS
         </Link >
-        {profile === "Paciente" ? <p>AGENDAR</p> : null}
+        {profile === "Paciente" ? <Link>AGENDAR</Link> : null}
       </div>
       <button className="iconProfile" onClick={toggleVisibility}>
         <img
@@ -67,14 +67,12 @@ const NavBar = ({isConsulta, isPreCad, isAgendarConsulta}) => {
         />
         <p>{username}</p>
       </button>
-      {isVisible && (
+      {isVisible && <>
         <div className={`containerProfile ${isVisible ? "show" : "hide"}`}>
-          <Link style={{ marginTop: 40 }}>Conta</Link>
-          <Link to="/login" onClick={localStorage.clear()}>
-            Sair
-          </Link>
+          <Link to="/profile" style={{ marginTop: 40 }}>Perfil</Link>
+          <Link to="/logout" >Sair</Link>
         </div>
-      )}
+        </>}
     </div>
   );
 };

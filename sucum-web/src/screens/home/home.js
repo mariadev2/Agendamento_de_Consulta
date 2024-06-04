@@ -5,9 +5,10 @@ import Skeleton from "../../components/Skeleton/skeleton";
 import NavBar from "../../components/Navbar/navbar";
 import doctorIcon from '../../assets/doctor.png'
 import { getAllConsultas } from "../../service/consultaService";
+import { getMedicoById } from "../../service/medicoService";
 
 import './home.css'
-import { getMedicoById } from "../../service/preSignUpMedico";
+
 
 const Home = () => {
   const navigate = useNavigate();
@@ -46,7 +47,6 @@ const Home = () => {
     const id = localStorage.getItem('id');
     if (profile === "Medico") {
       const response = await getMedicoById(id, token);
-      console.log(response.data[0]);
       if (response !== "Network Error") {
         if (response.data[0].isActive === "true") {
           setLoading(false);

@@ -3,7 +3,8 @@ import InputMask from 'react-input-mask';
 import { useNavigate } from "react-router-dom";
 import './signUpMed.css';
 import Loading from '../../components/Loading/loading';
-import { signUpMedService } from '../../service/signUpMed';
+import { signUpMedService } from '../../service/medicoService';
+import NavBar from '../../components/Navbar/navbar';
 
 const SignUpMed = () => {
   const [errors, setErrors] = useState({});
@@ -133,7 +134,9 @@ const SignUpMed = () => {
   
 
   return (
-    <div className="signUpContainer">
+    <>
+     <NavBar isConsulta={false} isAgendarConsulta={false} isPreCad={false} />
+     <div className="signUpContainer">
       <div className="containerForm Med">
         <div style={{ padding: 40, height: "90%" }}>
           <h2>Vamos iniciar o cadastro</h2>
@@ -328,6 +331,7 @@ const SignUpMed = () => {
         
       </div>
     </div>
+    </>
   );
 };
 

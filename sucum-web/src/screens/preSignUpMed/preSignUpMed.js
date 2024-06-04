@@ -4,7 +4,7 @@ import InputMask from 'react-input-mask';
 import './preSignUpMed.css';
 import Loading from '../../components/Loading/loading';
 import NavBar from '../../components/Navbar/navbar';
-import { preSignUpService } from '../../service/preSignUpMedico';
+import { preSignUpService } from '../../service/medicoService';
 
 const PreSignUpMed = () => {
   const [errors, setErrors] = useState({});

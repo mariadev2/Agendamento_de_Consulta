@@ -3,6 +3,7 @@ import axios from 'axios';
 const baseUrl = 'http://localhost:8080/api/v1'
 const loginUrl = baseUrl + '/login'
 const signUpPacienteUrl = baseUrl + '/signUpPaciente'
+const getPacienteUrl = baseUrl + '/getPacienteById'
 
 export const loginService = async (data) =>{
     try {
@@ -11,6 +12,20 @@ export const loginService = async (data) =>{
       } catch (error) {
         return error.message;
       }
+}
+
+export const getPacienteById = async (data, token) =>{
+  const config = {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  };
+  try {
+      const response = await axios.post(getPacienteUrl, {id: data}, config);
+      return response.data;
+    } catch (error) {
+      return error.message;
+    }
 }
 
 export const signUpService = async (data) =>{
