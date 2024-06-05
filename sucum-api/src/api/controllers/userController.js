@@ -3,10 +3,6 @@ import jwt from 'jsonwebtoken'
 import db from '../../database/config-database.js'
 import dotenv from 'dotenv'
 import {checkUserExistLogin} from '../../database/utils.js'
-import jwtValidate from '../../config/jwt_validate.js'
-import { checkUserExistSupervisorById } from '../../database/supervisor/supervisor-utils.js'
-import { queryGetPacienteById } from '../../database/paciente/paciente-utils.js'
-import { checkUserExistMedicoById } from '../../database/medico/medico-utils.js'
 
 
 
@@ -37,6 +33,8 @@ export default () => {
                                                         perfil: result[0].perfil, 
                                                         sexo: result[0].sexo
                                                        });
+                        }else{
+                            return res.status(401).json({message: "Senha inválida"});
                         }
                     });
                 }else{

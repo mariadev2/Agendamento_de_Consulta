@@ -16,9 +16,13 @@ const Login = () => {
          const token = localStorage.getItem('tokenAuth');
          const expired = isExpired(token);
          if (expired) {
-            navigate('/login');
+            navigate('/');
+         }else{
+            navigate('/home');
          }
     }, [navigate])
+
+   
     
     const handleLoginChange = (e) => {
         setLabelError('')
@@ -42,6 +46,9 @@ const Login = () => {
             if (result === 'Network Error') {
                return setLabelError('Serviço indisponivel')
             }
+            if (result === 'Request failed with status code 401') {
+                setLabelError("Usuário inválido")
+            }
             if (result) {
                 switch (result.status) {
                     case 200:
@@ -50,7 +57,7 @@ const Login = () => {
                             localStorage.setItem('username', result.data.username)
                             localStorage.setItem('sexo', result.data.sexo)
                             localStorage.setItem('id', result.data.id)
-                            navigate('/');
+                            navigate('/home');
                             setLabelError('')
                         break;
                     case 401 || 404 || 500:
@@ -101,7 +108,7 @@ const Login = () => {
                     </div>
                     <button type="submit" style={{ padding: '.5em 1em' }}>Entrar</button>
                     { labelError.length > 0 
-                        ? <p className='labelError'>{labelError}</p> 
+                        ? <p className='labelError' style={{'marginTop': '5px'}}>{labelError}</p> 
                         : <div></div>
                     }
                 </form>

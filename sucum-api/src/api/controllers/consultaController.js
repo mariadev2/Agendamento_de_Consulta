@@ -107,6 +107,7 @@ export default () => {
     controller.getConsultaById = async (req, res) => {
         const getInstanceDB = db();
         const {id} = req.body;
+        console.log(id);
         let returnConsulta = {
             "consulta": {},
             "paciente": {},
@@ -121,6 +122,7 @@ export default () => {
             jwtValidate(getToken).then(e => {
                  getInstanceDB.query(queryGet, (err, data)=>{
                     if (err) res.status(500).json({messageError: 'Get failed: ' + err.sqlMessage});
+                    console.log(err);
                     const result = Object.values(JSON.parse(JSON.stringify(data)));
                 
                     if (result.length > 0) {

@@ -145,7 +145,7 @@ const SignUp = () => {
         setStateLoading(false)
         setStateRequest(true)
         setTimeout(() => {
-          navigate('/login');
+          navigate('/');
         }, 2);
       }else{
         setStateLoading(false)

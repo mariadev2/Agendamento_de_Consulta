@@ -7,7 +7,7 @@ const Logout = () => {
 
     useEffect(() => {
         localStorage.clear();
-        navigate('/login')
+        navigate('/')
     }, [navigate])
     
     

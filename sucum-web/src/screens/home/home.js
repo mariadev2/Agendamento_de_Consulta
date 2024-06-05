@@ -1,9 +1,10 @@
 import { isExpired } from "react-jwt";
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link} from "react-router-dom";
 import Skeleton from "../../components/Skeleton/skeleton";
 import NavBar from "../../components/Navbar/navbar";
-import doctorIcon from '../../assets/doctor.png'
+import maleIcon from '../../assets/man.png'
+import womanIcon from '../../assets/woman.png'
 import { getAllConsultas } from "../../service/consultaService";
 import { getMedicoById } from "../../service/medicoService";
 
@@ -30,6 +31,13 @@ const Home = () => {
   const fetchData = async () => {
     const token = localStorage.getItem('tokenAuth');
     const response = await getAllConsultas(token);
+    if (response.length > 0) {
+      for (let index = 0; index < response.length; index++) {
+         const response2 = await getMedicoById(response[index].idMedico, token);
+          response[index].medico = response2.data[0]
+      }
+    }
+  
     if (response !== 'Network Error') {
       setData(response);
       setLoading(false);
@@ -107,16 +115,21 @@ const Home = () => {
             <>
               {data.length > 0 ? (
                 data.map((e) => (
+                  <Link key={e.id} to={'/consulta/' + e.id} style={{'textDecoration': 'none'}}>
                   <div className="cardConsulta" key={e.id}>
-                    <img src={doctorIcon} alt="doctor icon" />
+                    <img width={105} src={e.medico.sexo === 'Masculino' ? maleIcon : womanIcon} alt="doctor icon" />
+                   
                     <div className="contentDescription">
                       <p>{e.tipoConsulta}</p>
                       <p>Médico SUCUM</p>
                       <p>{e.dataAgendamento}</p>
-                      <p>Fulano</p>
+                      <p>{e.medico.username}</p>
                       <p className="state">{e.estadoConsulta}</p>
                     </div>
+                    
+                    
                   </div>
+                  </Link>
                 ))
               ) : (
                 <div style={{ width: "100%" }}>

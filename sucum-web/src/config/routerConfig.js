@@ -9,10 +9,11 @@ import PreSignUpMed from "../screens/preSignUpMed/preSignUpMed";
 import SignUpMed from "../screens/signUpMed/signUpMed";
 import Profile from "../screens/profile/profile";
 import Logout from "../screens/logout/logout";
+import ConsultaView from "../screens/consulta/consulta";
 
 export default  createBrowserRouter([
     {
-      path: "/",
+      path: "/home",
       element: <ProtectedRoute><Home/></ProtectedRoute>,
     },
     {
@@ -28,12 +29,16 @@ export default  createBrowserRouter([
       element: <ProtectedRoute><PreSignUpMed/></ProtectedRoute>,
     },
     {
+      path: "/consulta/:id",
+      element: <ProtectedRoute><ConsultaView/></ProtectedRoute>,
+    },
+    {
       path: "/logout",
       element: <Logout />,
     },
     {
-      path: "/login",
-      element: <Login />,
+      path: "/",
+      element: <ProtectedRoute><Login /></ProtectedRoute>,
     },
     {
       path: "/signUp",

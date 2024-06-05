@@ -55,7 +55,7 @@ const NavBar = ({isConsulta, isPreCad, isAgendarConsulta}) => {
         {profile === "Supervisor" ? (
           <Link to="/preSignUpMed" className={isPreCad ? 'active': ''}>NOVO MÉDICO</Link>
         ) : null}
-        <Link to="/" className={isConsulta ? 'active': ''}>
+        <Link to="/home" className={isConsulta ? 'active': ''}>
           CONSULTAS
         </Link >
         {profile === "Paciente" ? <Link>AGENDAR</Link> : null}
