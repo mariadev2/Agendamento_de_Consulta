@@ -4,6 +4,7 @@ import "./cadConsulta.css";
 import Loading from "../../components/Loading/loading";
 import { getAllMedicos, signUpMedService } from "../../service/medicoService";
 import NavBar from "../../components/Navbar/navbar";
+import { singUpConsulta } from "../../service/consultaService";
 
 const SignUpConsulta = () => {
   const [stateLoading, setStateLoading] = useState(false);
@@ -15,13 +16,12 @@ const SignUpConsulta = () => {
   const [formData, setFormData] = useState({
     dataAgendamento: "",
     tipoConsulta: "",
-    estadoConsulta: "Inicar",
+    estadoConsulta: "Iniciar",
     idPaciente: localStorage.getItem('id'),
     idMedico: "",
     descricaoMotivo: "",
   });
 
-  const validateForm = () => {};
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -46,29 +46,19 @@ const SignUpConsulta = () => {
 
   const handleSubmit = (e) => {
     setLabelError("");
-    const id = localStorage.getItem("id");
     const token = localStorage.getItem("tokenAuth");
     e.preventDefault();
-    if (validateForm()) {
-      setStateLoading(true);
-      signUpMedService(formData, id, token)
-        .then((e) => {
-          if (e.status === 200) {
-            setStateLoading(false);
-            setStateRequest(true);
-            setTimeout(() => {
-              navigate("/");
-            }, 2000);
-          } else {
-            setStateLoading(false);
-            setLabelError(e.data.message);
-          }
-        })
-        .catch((e) => {
-          setStateLoading(false);
-          setLabelError("Erro no cadastro, tente novamente mais tarde");
-        });
-    }
+    setStateLoading(true);
+    singUpConsulta(token, formData).then(e=>{
+      setStateLoading(false);
+      if (e.message !== 'Salvo com sucesso') {
+        setLabelError(e.message)
+      }else{
+        navigate('/home')
+      }
+    }).catch(e =>{
+      setStateLoading(false);
+    })
   };
 
   useEffect(() => {

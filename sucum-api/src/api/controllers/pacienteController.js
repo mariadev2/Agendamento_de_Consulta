@@ -14,7 +14,7 @@ import jwtValidate from '../../config/jwt_validate.js'
 import {createSqlInsertQuestionario,
         createSqlUpdatePacienteQuestionario, 
         createSqlUpdateQuestionario,
-        deleteQuestionario } from '../../database/questionario/questionario-utils.js';
+        deleteQuestionario, queryGetQuestionarioById } from '../../database/questionario/questionario-utils.js';
 import Questionario from '../models/questionario.js';
 
 export default () => {
@@ -29,12 +29,22 @@ export default () => {
             getToken = getToken.replace('Bearer', '').trim();
         }
         const queryGet = queryGetPacienteById(id);
+       
         jwtValidate(getToken).then(e => {
             getInstanceDB.query(queryGet, (err, data)=>{
                 if (err) res.status(500).json({messageError: 'Registration failed: ' + err.sqlMessage});
                 if (data.length > 0) {
                     const result = Object.values(JSON.parse(JSON.stringify(data)));
-                    return res.status(200).json({data: result});
+                    const queryGetQuest = queryGetQuestionarioById(result[0].idQuestionario);
+                    getInstanceDB.query(queryGetQuest, (err, dataQuery)=>{
+                        console.log(err);
+                        if (err) res.status(500).json({messageError: 'Registration failed: ' + err.sqlMessage});
+                        if (dataQuery.length > 0) {
+                            const resultQuery = Object.values(JSON.parse(JSON.stringify(dataQuery)));
+                            return res.status(200).json({data: result, questionario: resultQuery});
+                        }
+                    })
+                 
                 }else{
                     res.status(400).json({messageError: 'Usuario is not exist'});
                 }

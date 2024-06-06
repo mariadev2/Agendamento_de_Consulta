@@ -11,7 +11,7 @@ export function createSqlInsertConsulta(dados) {
 export function checkConsultaExist(descricaoConsulta){
     return `SELECT COUNT(*) AS count
             FROM consulta
-            WHERE descricaoConsulta = "${descricaoConsulta}"
+            WHERE descricaoMotivo = "${descricaoConsulta}"
             `
 }
 

@@ -16,7 +16,7 @@ export default () => {
 
     controller.signUpConsulta = async (req, res) => {
         const newConsulta = returnNewConsulta(req.body)
-        const queryConsultaExist = checkConsultaExist(newConsulta.descricaoConsulta)
+        const queryConsultaExist = checkConsultaExist(newConsulta.descricaoMotivo)
 
         const querySave = createSqlInsertConsulta(newConsulta)
         try {
@@ -28,7 +28,7 @@ export default () => {
                 getInstanceDB.query(queryConsultaExist, (err, data)=>{
                     if (err) res.status(500).json({messageError: 'Error sql: ' + err.sqlMessage});
                     if (data[0].count > 0 ) {
-                        return res.status(200).json({message: "Já existe uma consulta em andamento com essa descricao"});
+                        return res.status(200).json({message: "Já existe uma consulta em andamento com esse motivo"});
                     }else{
                         getInstanceDB.query(querySave, (err, data)=>{
                             if (err) res.status(500).json({messageError: 'Registration failed' + err.sqlMessage});
@@ -107,7 +107,6 @@ export default () => {
     controller.getConsultaById = async (req, res) => {
         const getInstanceDB = db();
         const {id} = req.body;
-        console.log(id);
         let returnConsulta = {
             "consulta": {},
             "paciente": {},

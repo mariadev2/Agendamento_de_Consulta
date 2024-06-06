@@ -108,7 +108,6 @@ const Profile = () => {
   }, [navigate])
 
   function setData(data) {
-    console.log(data);
     setFormData({
       username: data.data[0].username != null ? `Nome: ${data.data[0].username}` : 'Nome: Não cadastrado',
       cpf: data.data[0].cpf != null ? `CPF: ${data.data[0].cpf}` : 'CPF: Não cadastrado',
@@ -125,6 +124,9 @@ const Profile = () => {
       telefone: data.data[0].telefone != null ? `Telefone: ${data.data[0].telefone}` : 'Telefone: Não cadastrado',
       celular: data.data[0].celular != null ? `Celular: ${data.data[0].celular}` : 'Celular: Não cadastrado',
       especializacao: data.data[0].especializacao != null ? `Especialização: ${data.data[0].especializacao}` : 'Especialização: Não cadastrado',
+      alergia: data.questionario != null ? data.questionario[0].alergia != null ? data.questionario[0].alergia : '' : '',
+      problemaSaude: data.questionario != null ? data.questionario[0].problemaSaude != null ? data.questionario[0].problemaSaude : '' : '',
+      usoMedicamento: data.questionario != null ? data.questionario[0].usoMedicamento != null ? data.questionario[0].usoMedicamento: '' : '',
   })
   }
   
@@ -347,6 +349,7 @@ const Profile = () => {
                             type="checkbox"
                             id="sim1"
                             name="sim"
+                            checked={formData.problemaSaude !== '' ? true : false}
                             readOnly={true}
                           />
                         </div>
@@ -355,6 +358,7 @@ const Profile = () => {
                           <input
                             type="checkbox"
                             id="nao1"
+                            checked={formData.problemaSaude.length > 0 ? false : true}
                             name="nao"
                             readOnly={true}
                           />
@@ -377,6 +381,7 @@ const Profile = () => {
                           <input
                             type="checkbox"
                             id="sim2"
+                            checked={formData.usoMedicamento !== '' ? true : false}
                             name="sim"
                             readOnly={true}
                           />
@@ -387,6 +392,7 @@ const Profile = () => {
                             type="checkbox"
                             id="nao2"
                             name="nao"
+                            checked={formData.usoMedicamento.length > 0  ? false : true}
                             readOnly={true}
                           />
                         </div>
@@ -408,6 +414,7 @@ const Profile = () => {
                           <input
                             type="checkbox"
                             id="sim3"
+                            checked={formData.alergia !== '' ? true : false}
                             name="sim"
                             readOnly={true}
                           />
@@ -418,6 +425,7 @@ const Profile = () => {
                             type="checkbox"
                             id="nao3"
                             name="nao"
+                            checked={formData.alergia.length > 0 ? false : true}
                             readOnly={true}
                           />
                         </div>

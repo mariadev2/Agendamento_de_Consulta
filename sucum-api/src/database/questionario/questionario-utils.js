@@ -23,3 +23,10 @@ export function deleteQuestionario(id) {
     return `DELETE FROM questionario
             WHERE idPaciente = ${id}`
 }
+
+
+export function queryGetQuestionarioById(id){
+    return `SELECT *
+    FROM questionario
+    WHERE idPaciente = ${id}`
+}
