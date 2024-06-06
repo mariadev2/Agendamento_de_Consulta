@@ -4,6 +4,7 @@ const baseUrl = 'http://localhost:8080/api/v1'
 const preSignUpMedicoUrl = baseUrl + '/preSignUpMedico'
 const getMedicoByIdUrl = baseUrl + '/getMedicoById'
 const signUpMedicoUrl = baseUrl + '/updateMedico'
+const getAllMedicosUrl = baseUrl + '/getAllMedicos'
 
 export const preSignUpService = async (data) =>{
     const createBody = {
@@ -64,6 +65,22 @@ export const signUpMedService = async (data, id, token) =>{
     try {
       const response = await axios.post(signUpMedicoUrl, createBody, config);
       return response;
+    } catch (error) {
+      return error.response;
+    }
+  }
+
+  export const getAllMedicos = async ( token) =>{
+    const config = {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      };
+   
+  
+    try {
+      const response = await axios.get(getAllMedicosUrl, config);
+      return response.data;
     } catch (error) {
       return error.response;
     }

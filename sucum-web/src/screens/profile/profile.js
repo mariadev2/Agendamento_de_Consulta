@@ -108,6 +108,7 @@ const Profile = () => {
   }, [navigate])
 
   function setData(data) {
+    console.log(data);
     setFormData({
       username: data.data[0].username != null ? `Nome: ${data.data[0].username}` : 'Nome: Não cadastrado',
       cpf: data.data[0].cpf != null ? `CPF: ${data.data[0].cpf}` : 'CPF: Não cadastrado',

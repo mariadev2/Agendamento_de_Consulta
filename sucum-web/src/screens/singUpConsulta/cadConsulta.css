@@ -1,0 +1,11 @@
+.labl{
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-family: sans-serif;
+    color: white;
+    font-weight: 600;
+}
+
+.labl.area{
+    margin-bottom: 0px;
+}

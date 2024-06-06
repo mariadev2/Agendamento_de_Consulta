@@ -58,7 +58,7 @@ const NavBar = ({isConsulta, isPreCad, isAgendarConsulta}) => {
         <Link to="/home" className={isConsulta ? 'active': ''}>
           CONSULTAS
         </Link >
-        {profile === "Paciente" ? <Link>AGENDAR</Link> : null}
+        {profile === "Paciente" ? <Link to='/agendar' className={isAgendarConsulta ? 'active': ''}>AGENDAR</Link> : null}
       </div>
       <button className="iconProfile" onClick={toggleVisibility}>
         <img

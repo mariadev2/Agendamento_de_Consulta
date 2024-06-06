@@ -10,6 +10,7 @@ import SignUpMed from "../screens/signUpMed/signUpMed";
 import Profile from "../screens/profile/profile";
 import Logout from "../screens/logout/logout";
 import ConsultaView from "../screens/consulta/consulta";
+import SignUpConsulta from "../screens/singUpConsulta/cadConsulta";
 
 export default  createBrowserRouter([
     {
@@ -31,6 +32,10 @@ export default  createBrowserRouter([
     {
       path: "/consulta/:id",
       element: <ProtectedRoute><ConsultaView/></ProtectedRoute>,
+    },
+    {
+      path: "/agendar",
+      element: <ProtectedRoute><SignUpConsulta/></ProtectedRoute>,
     },
     {
       path: "/logout",
