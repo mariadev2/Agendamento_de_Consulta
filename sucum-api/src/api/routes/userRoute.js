@@ -1,6 +1,7 @@
-import controller from '../controllers/userController.js'
+import controllerUser from '../controllers/userController.js'
+import swaggerUi from 'swagger-ui-express';
+import swaggerSpecs from '../../../swaggerConfig.js'
 
 export default app  => {
-    app.route('/api/v1/signUp').post(controller().signUpController)
-    app.route('/api/v1/login').post(controller().loginController)
+    app.route('/api/v1/login').post(controllerUser().loginController);
 }

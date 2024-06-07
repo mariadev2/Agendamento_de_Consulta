@@ -1,0 +1,223 @@
+.signUpContainer{
+    width: 100%;
+    filter: drop-shadow(5px 5px 5px #222);
+    height: 100vh;
+    background-image: url('../../assets/background-login.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.containerForm{
+    opacity: .6;
+    border-radius: 10px;
+    width: 80%;
+    background: #044CF6;
+    margin: 50px;
+}
+
+.containerForm h2{
+    font-size: 30px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
+}
+
+.containerForm h3{
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
+}
+.containerForm form button{
+    font-weight: bold;
+    cursor: pointer;
+    font-family: sans-serif;
+    background-color: #EBE201;
+    margin: 50px auto;
+    width: 80px;
+    padding: 10px;
+    border-radius: 15px;
+    border: none;
+}
+
+.containerForm.Med .loading-container{
+    height: unset;
+}
+ 
+.containerForm form{
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 700px;
+    overflow: hidden;
+}
+
+.containerForm form div{
+    display: flex;
+    gap: 20px;
+}
+
+ .containerForm form .cpfContainer section{
+    animation: ease-in-out;
+    transition: all 1s;
+    width: unset !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.containerForm form .senhaContainer span, .containerForm form .cpfContainer span{
+    animation: ease-in-out;
+    transition: all 1s;
+    display: flex;
+    gap: 20px;
+}
+
+.containerForm form .contentEmail .inputErrorCustom{
+    animation: ease-in-out;
+    transition: all 1s;
+    margin-top: 28px;
+    height: .7rem;
+}
+
+.containerForm form .contentEmail .email{
+    animation: ease-in-out;
+    transition: all 1s;
+}
+
+.containerForm form .contentEmail span{
+    animation: ease-in-out;
+    transition: all 1s;
+    flex-direction: column;
+    width: 50%;
+}
+
+.signUpContainer input {
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    text-align: center;
+    font-weight: 700;
+    padding: .7rem;
+}
+.containerForm form #name{
+    width: 100%;
+    max-width: 100%;
+}
+
+.containerForm form #cpf, .containerForm form #birthDate, .containerForm form #password, .containerForm form #confirmPassword{
+    width: 300px;
+}
+
+.containerForm form #endereco, .containerForm form #email{
+    width: 100%;
+}
+
+.contentCep, .contentEmail{
+    justify-content:  unset;
+}
+
+.contentEmail #cidade{
+    width: 15%;
+}
+
+.containerForm #consulta{
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    text-align: center;
+    font-weight: 700;
+    padding: .7rem;
+}
+
+.containerForm #consulta:focus-visible{
+    outline: none;
+}
+
+.containerForm #consulta:not:-internal-list-box{
+    outline: none;
+    border: 1px solid red;
+}
+
+.containerForm form input{
+    text-align: left;
+}
+
+.containerQuestionario input:disabled{
+    cursor: help;
+    background-color: #fff !important;
+}
+
+.contentQuestionario div, .contentQuestionario{
+    align-items: center;
+    color: #fff;
+    font-weight: bold;
+    font-family: sans-serif;
+    gap: 10px !important;
+}
+
+
+.labelError{
+    animation: ease-in-out;
+    transition: all 1s;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: red;
+    margin-bottom: unset;
+    margin-left: 10px;
+    margin-top: unset;
+}
+
+
+@media only screen and (max-width: 600px) {
+
+    .containerForm form{
+        overflow-y: scroll;
+        scrollbar-color: #fff transparent;
+        scrollbar-width: thin;
+    }
+    .containerForm form #name{
+        width: unset;
+        max-width: unset;
+    }
+
+    .containerForm form .senhaContainer span{
+        flex-direction: column;
+    }
+
+    .containerForm form #password, .containerForm form #endereco, .containerForm form #cidade, .containerForm form #bairro{
+        width: unset;
+    }
+
+    .containerForm form #email{
+        width: 94%;
+    }
+
+    .containerForm form .contentEmail span{
+        width: unset;
+    }
+    .containerForm form .containerQuestionario .contentBoxs{
+        flex-direction: row;
+    }
+
+    .containerForm form .containerQuestionario #resposta1,  .containerForm form .containerQuestionario #resposta2,  .containerForm form .containerQuestionario #resposta3{
+        width: 93%;
+    } 
+
+    .containerForm form .senhaContainer .contentSexo{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .containerForm form div{
+        flex-direction: column;
+        margin-right: 10px;
+        gap: 10px;
+    }
+   
+    
+}

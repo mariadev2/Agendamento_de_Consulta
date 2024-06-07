@@ -1,0 +1,164 @@
+.containerHome{
+    z-index: -1;
+    background-position-x: right;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    width: 50%;
+    height: 100vh;
+    filter: drop-shadow(1px 1px 1px #000);
+    background-image: url('../../assets/background-login.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    align-items: center;
+    display: flex;
+}
+
+.sectionYellow{
+    z-index: -1;
+    position: absolute;
+    background-color: #D9D9D9;
+    height: 100%;
+    width: 50%;
+}
+
+.contentText{
+    padding: 60px;
+    width: 40%;
+    position: absolute;
+    height: 400px;
+    margin-top: 5%;
+}
+
+.contentText p{
+    line-height: 40px;
+    text-align: left;
+    font-family: sans-serif;
+    font-size: 24px;
+    color: #044CF6;
+}
+
+.contentText span{
+    display: flex;
+    align-items: center;
+}
+
+.contentText span div{
+    position: absolute;
+    width: 100px;
+    height: 3px;
+    background: yellow;
+    left: -20px;
+}
+
+.contentText span p{
+    margin-left: 40px;
+    font-weight: bold;
+}
+
+.contentText h2{   
+    font-weight: bold;
+    font-size: 32px;
+    font-family: sans-serif;
+    color: #044CF6;
+    margin: 20px 0px 20px 0px;
+}
+
+.contentHelp{
+    left: 40px;
+    width: 50px;
+    height: 50px;
+    background-image: url('../../assets/communication.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    bottom: 20px;
+}
+.contentHelp:hover{
+    cursor: pointer;
+}
+
+.contentConsultas{
+    padding: 20px;
+    max-width: 1100px;
+    min-height: 300px;
+    flex-direction: column;
+    justify-content: flex-start;
+    display: flex;
+    margin: 0 auto;
+    position: relative;
+    top: 70%;
+    max-height: 600px;
+    width: 65%;
+    background: #ddd;
+    border: 10px solid #EBE201;
+}
+
+.contentConsultas .title{
+    font-family: sans-serif;
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+.boxResult{
+    gap: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.boxResult.show{
+    overflow-y: scroll;
+}
+
+.cardConsulta{
+    height: 120px;
+    gap: 5px;
+    padding: 20px;
+    border: 1px solid grey;
+    border-radius: 8px;
+    width: 270px;
+    display: flex;
+}
+
+.cardConsulta:hover{
+    cursor: pointer;
+}
+
+.contentDescription{
+    justify-content: flex-end;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-family: sans-serif;
+    font-size: 16px;
+    margin-left: 10px;
+    color: #044CF6;
+    font-weight: bold;
+ 
+}
+
+.contentDescription p{
+    text-overflow: ellipsis;
+    width: auto;
+    overflow:hidden;
+}
+
+.state{
+    border-radius: 20px;
+    text-align: center;
+    padding: 10px;
+    height: 15px;
+    background:#044CF6; 
+    font-weight: normal;
+    color: #fff !important;
+}
+
+.listEmpty{
+    margin: 10% auto;
+    font-size: 18px;
+    width: 100%;
+    font-family: sans-serif;
+    text-align: center;
+}

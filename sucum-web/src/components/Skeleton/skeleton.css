@@ -1,0 +1,54 @@
+.container {
+    height: 120px;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    
+  }
+
+  .containerLabels{
+    gap: 8px;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    width: 50%;
+  }
+  
+  /* Skeleton loader styles */
+  .skeleton {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .skeleton-header {
+    height: 120px;
+    width: 50%;
+    background-color: #ccc;
+    border-radius: 4px;
+    animation: pulse 1.5s infinite;
+  }
+  
+  .skeleton-line {
+    height: 16px;
+    width: 100%;
+    background-color: #ccc;
+    border-radius: 4px;
+    animation: pulse 1.5s infinite;
+  }
+  
+  .skeleton-line.short {
+    width: 80%;
+  }
+  
+  @keyframes pulse {
+    0% {
+      background-color: #ccc;
+    }
+    50% {
+      background-color: #ddd;
+    }
+    100% {
+      background-color: #ccc;
+    }
+  }

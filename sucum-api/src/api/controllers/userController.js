@@ -1,48 +1,47 @@
 
 import jwt from 'jsonwebtoken'
-import bcrypt from 'bcrypt'
-import User from '../models/user.js'
+import db from '../../database/config-database.js'
+import dotenv from 'dotenv'
+import {checkUserExistLogin} from '../../database/utils.js'
+
+
 
 export default () => {
+    dotenv.config()
     const controller = {};
-    controller.signUpController = async (req, res) => {
-        
-        try {
-            const { username, password } = req.body;
-            const hashedToken = await bcrypt.hash(password, 10);
-            const user = new User({ username, password:hashedToken });
-            // save database
-            // await user.save();
-            res.status(201).json({ message: 'User registered successfully' });
-        } catch (error) {
-            res.status(500).json({ error: 'Registration failed' });
-        }
-    };
+    const secretKey = process.env.SECRET_KEY;
+    const getInstanceDB = db();
 
     controller.loginController = async (req, res) => {
         try {
-            const { username, password } = req.body;
+            const { username, senha } = req.body;
+            const queryLogin = checkUserExistLogin(username)
 
-            // const user = await User.findOne({ username });
-            // if (!user) {
-            //     return res.status(401).json({ error: 'Authentication failed' });
-            // }
-
-            //user from data base
-            //user mock
-            const user = new User({ username: 'test', password: '$2b$10$pNcfQjYvxI4HXSB01dRqt.uM.V3FudYf3uPtNuXX1nknfP8z4ArUu' });
-           
-            const passwordMatch = await bcrypt.compare(password, user.password);
-            
-            if (!passwordMatch) {
-                return res.status(401).json({ error: 'Authentication failed' });
-            }
-            const token = jwt.sign({ userId: '66304d9d03957f8d08d63c51'}, 'your-secret-key', {
-                expiresIn: '1h',
+            getInstanceDB.query(queryLogin, (err, data)=>{
+                if (err) res.status(500).json({messageError: 'Error sql: ' + err.sqlMessage});
+                const result = Object.values(JSON.parse(JSON.stringify(data)));
+                if (result.length > 0) {
+                    result.forEach(element => {
+                        if ((element.username === username || element.cpf === username ) && element.senha === senha) {
+                            const token = jwt.sign({ userId: element.id}, secretKey, {
+                                expiresIn: '1h',
+                            });
+                           return res.status(200).json({tokenJWT: token, 
+                                                        id: result[0].id, 
+                                                        username: result[0].username, 
+                                                        perfil: result[0].perfil, 
+                                                        sexo: result[0].sexo
+                                                       });
+                        }else{
+                            return res.status(401).json({message: "Senha inválida"});
+                        }
+                    });
+                }else{
+                    return res.status(401).json({message: "Username is not exists"});
+                }
             });
-            res.status(200).json({ token });
         } catch (error) {
-            res.status(500).json({ error: 'Login failed' });
+            res.status(500).json({ error: 'Login error' });
         }
     };
   

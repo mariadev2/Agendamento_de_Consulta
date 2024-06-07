@@ -4,7 +4,7 @@ const appInstance = app();
 
 const port = appInstance.get('port');
 
-// RODANDO NOSSA APLICAÇÃO NA PORTA SETADA
+// RUNNING OUR APPLICATION ON THE SET PORT
 appInstance.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`)
 });
