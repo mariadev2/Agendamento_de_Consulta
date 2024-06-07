@@ -53,7 +53,7 @@ const NavBar = ({isConsulta, isPreCad, isAgendarConsulta}) => {
       <img className="logo" src={logo} alt="logo" />
       <div className="navBarOptions">
         {profile === "Supervisor" ? (
-          <Link to="/preSignUpMed" className={isPreCad ? 'active': ''}>NOVO MÉDICO</Link>
+          <Link to="/preSignUpMed" id='getBtnPreCad' className={isPreCad ? 'active': ''}>NOVO MÉDICO</Link>
         ) : null}
         <Link to="/home" className={isConsulta ? 'active': ''}>
           CONSULTAS

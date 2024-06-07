@@ -155,10 +155,10 @@ const PreSignUpMed = () => {
                   </span>
                 </section>
               </div>
-              <button type="submit">Cadastrar</button>
+              <button name='buttonSend' type="submit">Cadastrar</button>
               {stateLoading === true ? <Loading /> : <div></div>}
               {stateRequest === true ? (
-                <h3 style={{ margin: "0 auto" }}>Cadastrado com sucesso</h3>
+                <h3 id='labelSuccess' style={{ margin: "0 auto" }}>Cadastrado com sucesso</h3>
               ) : (
                 <></>
               )}

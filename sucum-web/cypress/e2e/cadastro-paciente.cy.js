@@ -3,7 +3,7 @@ describe('SignUpCadatro fields', () => {
     beforeEach(() => {
       // Acesse a página de cadastro antes de cada teste
       cy.visit('/signUp')
-      cy.viewport(1500, 900);
+      cy.viewport(1800, 900);
       window.localStorage.clear();
     });
   
@@ -33,7 +33,7 @@ describe('SignUpCadatro fields', () => {
   describe('SignUpCadatro validator', () => {
     beforeEach(() => {
       // Acesse a página de cadastro antes de cada teste
-      cy.viewport(1500, 900);
+      cy.viewport(1800, 900);
       window.localStorage.clear();
     });
     it('Deverá mostrar mensagem de campo do nome vazio', () => {
@@ -59,7 +59,7 @@ describe('SignUpCadatro fields', () => {
   describe('SignUpCadastro Request Error User Exists', () => {
     beforeEach(() => {
       // Acesse a página de login antes de cada teste
-      cy.viewport(1500, 900);
+      cy.viewport(1800, 900);
       window.localStorage.clear();
     });
     it("Deverá apresentar a label de erro para o usuário", () => {
@@ -108,7 +108,7 @@ describe('SignUpCadatro fields', () => {
   describe("SignUpCadastro Request Success", () => {
     beforeEach(() => {
       // Acesse a página de login antes de cada teste
-      cy.viewport(1500, 900);
+      cy.viewport(1800, 900);
       cy.get('input[type="text"]').clear();
       cy.get('input[type="date"]').clear();
       cy.get('input[type="password"]').clear();

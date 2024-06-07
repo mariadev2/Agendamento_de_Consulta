@@ -299,7 +299,7 @@ const SignUpMed = () => {
                 required
               />
               <select id="consulta" name="especializacao" onChange={handleChange} required>
-                <option name="especializacao" value="" defaultChecked>Selecione a especialidade</option>
+                <option  name="especializacao" value="" defaultChecked>Selecione a especialidade</option>
                 <option name="especializacao" value="Consulta Geral">Consulta Geral</option>
                 <option name="especializacao" value="Cardiologia">Cardiologia</option>
                 <option name="especializacao" value="Dermatologia">Dermatologia</option>
@@ -309,15 +309,15 @@ const SignUpMed = () => {
                 <option name="especializacao" value="Ortopedia">Ortopedia</option>
                 <option name="especializacao" value="Psiquiatria">Psiquiatria</option>
                 <option name="especializacao" value="Neurologia">Neurologia</option>
-                <option name="especializacao" value="Urologia">Urologia</option>
+                <option id='dropdown-id' name="especializacao" value="Urologia">Urologia</option>
               </select>
             </div>
             
             
-            <button type="submit">Cadastrar</button>
+            <button name='buttonSend' type="submit">Cadastrar</button>
             {stateLoading === true ? <Loading /> : <div></div>}
             {stateRequest === true ? 
-              <h3 style={{ margin: "0 auto" }}>Cadastrado com sucesso</h3>
+              <h3 id='labelSuccess' style={{ margin: "0 auto" }}>Cadastrado com sucesso</h3>
              : 
               <></>
             }

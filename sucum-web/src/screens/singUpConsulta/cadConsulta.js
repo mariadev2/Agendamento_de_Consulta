@@ -190,6 +190,7 @@ const SignUpConsulta = () => {
               <input
                 type="text"
                 readOnly
+                name="local"
                 value="Clinica SUCUM"
                 style={{ width: "50%" }}
               />
@@ -203,15 +204,15 @@ const SignUpConsulta = () => {
                 ></textarea>
               </div>
 
-              <button type="submit">Cadastrar</button>
+              <button name='buttonSend' type="submit">Cadastrar</button>
               {stateLoading === true ? <Loading /> : <div></div>}
               {stateRequest === true ? (
-                <h3 style={{ margin: "0 auto" }}>Cadastrado com sucesso</h3>
+                <h3 id='labelSuccess' style={{ margin: "0 auto" }}>Cadastrado com sucesso</h3>
               ) : (
                 <></>
               )}
             </form>
-            {labelError.length > 0 ? (
+            { labelError !== '' ? (
               <p style={{ textAlign: "center", color: "red" }}>{labelError}</p>
             ) : (
               <></>

@@ -2,8 +2,8 @@
 describe('Login Validator', () => {
   beforeEach(() => {
     // Acesse a página de login antes de cada teste
-    cy.visit('/')
-    cy.viewport(1500, 900);
+    cy.visit("/logout");
+    cy.viewport(1800, 900);
     window.localStorage.clear();
   });
 
@@ -32,7 +32,7 @@ describe('Login Validator', () => {
 describe('Login Request Error Password', () => {
   beforeEach(() => {
     // Acesse a página de login antes de cada teste
-    cy.viewport(1500, 900);
+    cy.viewport(1800, 900);
   });
   it('should login successfully with valid credentials', () => {
     // Digite um email e senha válidos
@@ -62,7 +62,7 @@ describe('Login Request Error Password', () => {
 describe('Login Request Success', () => {
   beforeEach(() => {
     // Acesse a página de login antes de cada teste
-    cy.viewport(1500, 900);
+    cy.viewport(1800, 900);
   });
   it('should login successfully with valid credentials', () => {
     // Digite um email e senha válidos
@@ -73,9 +73,10 @@ describe('Login Request Success', () => {
     cy.intercept('POST', 'http://localhost:8080/api/v1/login', {
       statusCode: 200,
       body: { 
-        tokenJWT: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxNzcyNTAxNSwiZXhwIjoxNzE3NzI4NjE1fQ.oEsdBPn_XkVWD4deaMFKnV9nNBlgo6iOU0NI_NOttF0',
+        tokenJWT: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTcxNzc3OTUxMCwiZXhwIjoxNzE3NzgzMTEwfQ.r-sFffxg9ZifBCGPSsS0gm2Q6HmOB-k6Z-Iz6Q26lqc',
         username: 'Thais Souza',
         profile: 'Paciente',
+        sexo: 'Feminino',
         id: 1
       }
     }).as('loginRequest');
