@@ -73,7 +73,7 @@ describe('Login Request Success', () => {
     cy.intercept('POST', 'http://localhost:8080/api/v1/login', {
       statusCode: 200,
       body: { 
-        tokenJWT: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTcxNzc3OTUxMCwiZXhwIjoxNzE3NzgzMTEwfQ.r-sFffxg9ZifBCGPSsS0gm2Q6HmOB-k6Z-Iz6Q26lqc',
+        tokenJWT: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxNzc4NjgzNywiZXhwIjoxNzE3NzkwNDM3fQ.0e4bYQWxdmMSrSRokuDjFJaujRDRMGBQpdP8yO3iVlY',
         username: 'Thais Souza',
         profile: 'Paciente',
         sexo: 'Feminino',

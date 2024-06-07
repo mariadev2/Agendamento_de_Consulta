@@ -32,7 +32,7 @@ describe('Login Request Success', () => {
       cy.intercept('POST', 'http://localhost:8080/api/v1/login', {
         statusCode: 200,
         body: { 
-          tokenJWT: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxNzc4MzE0OSwiZXhwIjoxNzE3Nzg2NzQ5fQ.PxOhGyY119R5vUu8aI6jMeDe67xuRHRsgJlYTQhUBlw',
+          tokenJWT: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxNzc4NjgzNywiZXhwIjoxNzE3NzkwNDM3fQ.0e4bYQWxdmMSrSRokuDjFJaujRDRMGBQpdP8yO3iVlY',
           username: 'Nilton Santos',
           profile: 'Medico',
           sexo: 'Masculino',
