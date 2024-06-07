@@ -103,10 +103,13 @@
 .boxResult{
     gap: 10px;
     display: flex;
-    overflow-y: scroll;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+}
+
+.boxResult.show{
+    overflow-y: scroll;
 }
 
 .cardConsulta{

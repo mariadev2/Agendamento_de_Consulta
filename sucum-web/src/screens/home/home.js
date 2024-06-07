@@ -101,7 +101,7 @@ const Home = () => {
       </div>
       <section className="contentConsultas">
         <p className="title">Histórico de consultas</p>
-        <div className="boxResult">
+        <div className={data.length > 9 ? 'boxResult show': 'boxResult'}>
           {loading ? (
             <>
               <Skeleton />
