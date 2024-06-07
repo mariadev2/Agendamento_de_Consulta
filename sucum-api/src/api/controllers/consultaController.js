@@ -173,7 +173,6 @@ export default () => {
         idPaciente: data.idPaciente,
         dataAgendamento: data.dataAgendamento,
         createTime: getDate,
-        genero: data.genero
     });
 
     return consulta; 

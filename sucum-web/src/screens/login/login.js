@@ -95,7 +95,7 @@ const Login = () => {
                     </div>
                     <div style={{ marginBottom: '1em' }}>
                         <input
-                            type="senha"
+                            type="password"
                             id="senha"
                             value={senha}
                             placeholder='Senha'

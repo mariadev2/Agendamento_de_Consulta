@@ -163,6 +163,7 @@ function returnNewMedico(data) {
         numeroCasa: data.numeroCasa ?? null, 
         cep: data.cep ?? null,
         especializacao: data.especializacao ?? null,
+        endereco: data.endereco ?? null,
         sexo: data.sexo,
         isActive: 'true',
         createTime: getDate

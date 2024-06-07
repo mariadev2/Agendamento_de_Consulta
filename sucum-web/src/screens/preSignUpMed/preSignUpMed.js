@@ -138,7 +138,7 @@ const PreSignUpMed = () => {
                       value={formData.confirmSenha}
                       onChange={handleChange}
                       name="confirmSenha"
-                      placeholder="Confirme sua Senha"
+                      placeholder="Confirme a Senha"
                       required
                     />
                     <InputMask

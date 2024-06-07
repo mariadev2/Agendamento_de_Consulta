@@ -196,7 +196,7 @@ const Profile = () => {
                   <section>
                     <span>
                       <input
-                        type="password"
+                        type="text"
                         id="password"
                         minLength="8"
                         title="Insira no mínimo 8 caracteres"
@@ -329,6 +329,7 @@ const Profile = () => {
                       type="text"
                       id="especializacao"
                       name="especializacao"
+                      style={{width: 200}}
                       value={formData.especializacao}
                       placeholder="especializacao"
                       readOnly={true}

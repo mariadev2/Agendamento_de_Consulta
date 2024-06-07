@@ -254,9 +254,19 @@ const ConsultaView = () => {
                       ></textarea>
                     </div>
                   </div>
-                  <button type="submit" disabled>
-                    Gerar Relatorio
-                  </button>
+                  <span style={{ gap: 20, display: "flex", margin: "0 auto" }}>
+                    {doctor.username === localStorage.getItem("username") ? (
+                      <button type="submit" disabled>
+                        Editar consulta
+                      </button>
+                    ) : (
+                      <></>
+                    )}
+
+                    <button type="submit" disabled>
+                      Gerar Relatorio
+                    </button>
+                  </span>
                   {stateLoading === true ? <Loading /> : <div></div>}
                 </form>
               </div>

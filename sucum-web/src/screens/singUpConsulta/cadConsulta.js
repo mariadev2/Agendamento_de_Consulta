@@ -51,10 +51,13 @@ const SignUpConsulta = () => {
     setStateLoading(true);
     singUpConsulta(token, formData).then(e=>{
       setStateLoading(false);
-      if (e.message !== 'Salvo com sucesso') {
-        setLabelError(e.message)
-      }else{
-        navigate('/home')
+      setStateRequest(true);
+      if (e.message !== "Salvo com sucesso") {
+        setLabelError(e.message);
+      } else {
+        setTimeout(() => {
+          navigate("/home");
+        }, 2000);
       }
     }).catch(e =>{
       setStateLoading(false);

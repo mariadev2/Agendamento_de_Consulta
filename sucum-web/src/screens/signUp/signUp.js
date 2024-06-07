@@ -146,7 +146,7 @@ const SignUp = () => {
         setStateRequest(true)
         setTimeout(() => {
           navigate('/');
-        }, 2);
+        }, 2000);
       }else{
         setStateLoading(false)
         setLabelError(e.data.message)

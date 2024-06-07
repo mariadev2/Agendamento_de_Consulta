@@ -10,6 +10,7 @@ const pacienteSchema = new Schema({
     bairro: { type: String, required: true },
     cidade: { type: String, required: true },
     email: { type: String, required: true },
+    endereco:{ type: String, required: true },
     cpf: { type: String, required: true },
     cep: { type: String, required: true },
     sexo: {type: String, required: true},

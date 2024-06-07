@@ -18,6 +18,7 @@ export function queryUpdateMedico(dados){
                 bairro = "${dados.bairro}",
                 sexo = "${dados.sexo}",
                 cidade = "${dados.cidade}",
+                endereco = "${dados.endereco}",
                 especializacao = "${dados.especializacao}",
                 isActive = "${dados.isActive}"
             WHERE id = ${dados.id};`;

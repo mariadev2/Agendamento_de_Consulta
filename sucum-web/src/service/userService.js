@@ -37,6 +37,7 @@ export const signUpService = async (data) =>{
         "bairro": data.bairro ?? '',
         "cep": data.cep ?? '',
         "celular": data.celular ?? '',
+        "endereco": data.endereco ?? '',
         "cidade": data.cidade ?? '',
         "cpf": data.cpf ?? '',
         "numeroCasa": data.numeroCasa ?? undefined,

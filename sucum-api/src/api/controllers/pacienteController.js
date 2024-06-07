@@ -184,6 +184,7 @@ function returnNewPaciente(data) {
         cpf: data.cpf ?? null, 
         dataNascimento: formatDateToBrazilian(data.dataNascimento) ?? null, 
         email: data.email ?? null, 
+        endereco: data.endereco ?? null,
         numeroCasa: data.numeroCasa ?? null, 
         cep: data.cep ?? null,
         sexo: data.sexo,

@@ -48,6 +48,7 @@ export const signUpMedService = async (data, id, token) =>{
       celular: data.celular?? "",
       numeroCasa: data.numeroCasa ?? "",
       bairro: data.bairro ?? '',
+      endereco: data.endereco ?? '',
       cidade: data.cidade ?? '',
       email: data.email ?? '',
       cep: data.cep ?? '',

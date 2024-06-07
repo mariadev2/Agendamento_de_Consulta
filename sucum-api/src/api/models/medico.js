@@ -9,6 +9,7 @@ const medicoSchema = new Schema({
     cidade: { type: String, required: true },
     email: { type: String, required: true },
     cep: { type: String, required: true },
+    endereco:{ type: String, required: true },
     createTime : {type: String, required: true},
     sexo: {type: String, required: true},
     isActive : {type: String, required: true},
