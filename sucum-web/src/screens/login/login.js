@@ -87,6 +87,7 @@ const Login = () => {
                         <input
                             type="text"
                             id="login"
+                            name='username'
                             value={login}
                             placeholder='Nome ou CPF'
                             onChange={handleLoginChange}
@@ -97,6 +98,7 @@ const Login = () => {
                         <input
                             type="password"
                             id="senha"
+                            name='senha'
                             value={senha}
                             placeholder='Senha'
                             onChange={handlesenhaChange}
@@ -106,9 +108,9 @@ const Login = () => {
                     <div className='actionsLogin'>
                         <Link to="/signUp" className='signUp'>Cadastre-se</Link>
                     </div>
-                    <button type="submit" style={{ padding: '.5em 1em' }}>Entrar</button>
+                    <button type="submit" name='buttonSend' style={{ padding: '.5em 1em' }}>Entrar</button>
                     { labelError.length > 0 
-                        ? <p className='labelError' style={{'marginTop': '5px'}}>{labelError}</p> 
+                        ? <p className='labelError' id='labelError' style={{'marginTop': '5px'}}>{labelError}</p> 
                         : <div></div>
                     }
                 </form>

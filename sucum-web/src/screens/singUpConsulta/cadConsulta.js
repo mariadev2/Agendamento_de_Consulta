@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./cadConsulta.css";
 import Loading from "../../components/Loading/loading";
-import { getAllMedicos, signUpMedService } from "../../service/medicoService";
+import { getAllMedicos } from "../../service/medicoService";
 import NavBar from "../../components/Navbar/navbar";
 import { singUpConsulta } from "../../service/consultaService";
 

@@ -360,6 +360,7 @@ const SignUp = () => {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="E-mail"
+                  required
                 />
               </span>
             </div>
@@ -490,16 +491,16 @@ const SignUp = () => {
                 />
               </div>
             </div>
-            <button type="submit">Cadastrar</button>
+            <button type="submit" name='buttonSend'>Cadastrar</button>
             {stateLoading === true ? <Loading /> : <div></div>}
             {stateRequest === true ? (
-              <h3 style={{ margin: "0 auto" }}>Cadastrado com sucesso</h3>
+              <h3 id='labelSuccess' style={{ margin: "0 auto" }}>Cadastrado com sucesso</h3>
             ) : (
               <div></div>
             )}
           </form>
           {labelError.length > 0 ? (
-          <p style={{'textAlign': 'center', 'color': 'red'}}>{labelError}</p>
+          <p id='labelError' style={{'textAlign': 'center', 'color': 'red'}}>{labelError}</p>
         ) : (
           <></>
         )}
